@@ -1,0 +1,12 @@
+Dagsetning
+
+ID ferğar
+Nafn ferğar
+Pickup
+Sæti max
+Sæti laus
+
+ferğID
+Nafn
+Sæti frátekin
+
