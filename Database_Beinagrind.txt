@@ -1,10 +1,12 @@
 Dagsetning
 
 ID ferðar
+Fyrirtæki
 Nafn ferðar
-Pickup
+Pickup (Hótel)
 Sæti max
 Sæti laus
+Lýsing á ferð (matcha við leitarstreng. t.d. "Fjölsylduvænt" myndi matcha lýsingu sem innihéldi það orð)
 
 ferðID
 Nafn
