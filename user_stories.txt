@@ -6,9 +6,7 @@ As a user I want to be offered similar activities in case my preferred one is un
 
 As a Day Trip planner I want to add keywords that users can find my trip with.
 
-As a user I want to filter trips by duration.
-
-As a user I want to filter trips by type.
+As a user I want to filter trips by duration, type and price range.
 
 As a user I want to prioritise Trips close to my location.
 
@@ -21,4 +19,14 @@ As a user I want to search trips within a specific period of time, to be able to
 As a trip planner, I wish to be able to add a brief descripion of my trip that I can change whenever is appropriate.
 
 As a user I want to reserve seats on trips that allow it (before payment).
+
+As a user I want to rate trips I have been on for the benefit of other users.
+
+As a user I want to sort trips by popularity/ As a trip planner I want to see how my trips compare to others in popularity to see what I can improve on.
+
+As a user I want to see which trips pick up from my hotel.
+
+As a user I want to see trips close to my hotel (even if they don't pick up from my hotel)
+
+As the meta engine I wish to access a complete list of day trips.
 
