@@ -1,10 +1,18 @@
 import java.util.Date;
 
 public class Searcher {
-	private DayTrip[] trips;
+	private DayTrip[] temp;
+	private IndivDayTrip[] indivTemp;
+	private DayTripList trips;
+	private IndivDayTripList indivTrips;
+	private Info output;
 	
 	public Searcher(){
-		trips = new DayTrip[20];
+		temp = new DayTrip[20];
+		indivTemp = new IndivDayTrip[20];
+		trips = new DayTripList();
+		indivTrips = new IndivDayTripList();
+		output = new Info();
 	}
 	
 	//returns all IndivDayTrips that take place after pre and before post
@@ -47,15 +55,14 @@ public class Searcher {
 	}
 	
 	public DayTrip selectTrip(int select){
-		return this.trips[select];
+		return this.temp[select];
 	}
 	
 	public DayTrip[] getAll(){
-		return this.trips;
+		return null;
 	}
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		System.out.println("Þetta er Searcher Klasinn");
 
 	}
