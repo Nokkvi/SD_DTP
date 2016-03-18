@@ -30,3 +30,5 @@ As a user I want to see trips close to my hotel (even if they don't pick up from
 
 As the meta engine I wish to access a complete list of day trips.
 
+As a user I want Github to be reliable.
+
