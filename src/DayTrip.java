@@ -1,3 +1,4 @@
+import java.util.*;
 
 public class DayTrip {
 	private String name;
@@ -44,8 +45,9 @@ public class DayTrip {
 		descr = newDescr;
 	}
 	
-	public Rating rate(int n, String comment){
-		Rating.parent = name;
+	public Rating rate(int n, String comment, User user){
+		Rating rating = new Rating(this, n, comment, user);
+		return rating;
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
