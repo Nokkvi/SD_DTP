@@ -19,7 +19,7 @@ public class SearcherTest {
 
 	@Test
 	public void test() {
-		assertEquals(69, 69, 69);
+		assertEquals("foo", "bar");
 	}
 
 }

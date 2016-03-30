@@ -62,6 +62,8 @@ public class Searcher {
 		return null;
 	}
 	
+	
+	
 	public static void main(String[] args) {
 		System.out.println("Þetta er Searcher Klasinn");
 
