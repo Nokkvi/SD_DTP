@@ -1,13 +1,12 @@
-﻿-- Table: "Daytrips"."Rating"
+﻿-- Database: "Database"
 
--- DROP TABLE "Daytrips"."Rating";
+-- DROP DATABASE "Database";
 
-CREATE TABLE "Daytrips"."Rating"
-(
+CREATE DATABASE "Database"
+  WITH OWNER = postgres
+       ENCODING = 'UTF8'
+       TABLESPACE = pg_default
+       LC_COLLATE = 'Icelandic_Iceland.1252'
+       LC_CTYPE = 'Icelandic_Iceland.1252'
+       CONNECTION LIMIT = -1;
 
-)
-WITH (
-  OIDS=FALSE
-);
-ALTER TABLE "Daytrips"."Rating"
-  OWNER TO postgres;

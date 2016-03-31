@@ -6,7 +6,7 @@ import java.sql.*;
 public class Database implements I_Database {
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "org.postgresql.Driver";  
-    static final String DB_URL = "jdbc:postgresql:/SD_DTP-2D/database";
+    static final String DB_URL = "jdbc:postgresql:myDatabase";
 
     //  Database credentials
     static final String USER = "postgres";
