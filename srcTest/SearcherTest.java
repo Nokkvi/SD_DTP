@@ -4,6 +4,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import Classes.Searcher;
+
 public class SearcherTest {
 	private Searcher search;
 
