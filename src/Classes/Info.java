@@ -10,7 +10,7 @@ public class Info {
 	private int  numSeatsAvail;
 	private String category;
 	
-	public void setStart(String x){
+	public void setStartTime(String x){
 		this.startTime = x;
 	}
 	
