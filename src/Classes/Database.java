@@ -72,4 +72,9 @@ public class Database implements I_Database {
         }//end try
         System.out.println("Goodbye!");
     }//end main
+
+    public static ResultSet search(String sqlStatement) {
+        //TODO Óútfært þar til database hefur verið settur upp.
+        return null;
+    }
 }//end FirstExample
