@@ -1,20 +1,20 @@
 package Classes;
 
 import java.util.Date;
+import interfaces.*;
 
-public class Searcher {
+public class Searcher implements I_Searcher{
 	private DayTrip[] temp;
 	private IndivDayTrip[] indivTemp;
 	private DayTripList trips;
 	private IndivDayTripList indivTrips;
-	private Info output;
+//	private I_Info output;
 	
 	public Searcher(){
 		temp = new DayTrip[20];
 		indivTemp = new IndivDayTrip[20];
 		trips = new DayTripList();
 		indivTrips = new IndivDayTripList();
-		output = new Info();
 	}
 	
 	//returns all IndivDayTrips that take place after pre and before post
@@ -24,8 +24,13 @@ public class Searcher {
 	}
 	
 	//returns all IndivDayTrips that have seatsAvailable equal to or exceeding size
-	public IndivDayTrip[] searchBySize(int size){
-		IndivDayTrip[] a = null;
+	public Info[] searchBySize(int size){
+		IndivDayTrip[] a = indivTrips.pullIndivDayTrip(size);
+		Info[] output = new Info[a.length];
+		for(int i = 0; i < a.length; i++){
+			DayTrip parent = a[i].getParent();
+			output[i].setStartTime()
+		}
 		return a;
 	}
 	
