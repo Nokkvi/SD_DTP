@@ -1,43 +1,53 @@
 package classes;
 
 import java.util.Date;
+import interfaces.*;
 
-public class Searcher {
+public class Searcher implements I_Searcher{
 	private DayTrip[] temp;
 	private IndivDayTrip[] indivTemp;
 	private DayTripList trips;
 	private IndivDayTripList indivTrips;
-	private Info output;
+	//private Info output;
 	
 	public Searcher(){
 		temp = new DayTrip[20];
 		indivTemp = new IndivDayTrip[20];
 		trips = new DayTripList();
 		indivTrips = new IndivDayTripList();
-		output = new Info();
 	}
 	
 	//returns all IndivDayTrips that take place after pre and before post
-	public IndivDayTrip[] searchByTime(Date pre, Date post){
-		IndivDayTrip[] a = null;
+	public Info[] searchByTime(Date pre, Date post){
+		Info[] a = null;
 		return a;
 	}
 	
 	//returns all IndivDayTrips that have seatsAvailable equal to or exceeding size
-	public IndivDayTrip[] searchBySize(int size){
-		IndivDayTrip[] a = null;
-		return a;
+	public Info[] searchBySize(int size){
+		IndivDayTrip[] a = indivTrips.pullIndivDayTrip(size);
+		Info[] output = new Info[a.length];
+		for(int i = 0; i < a.length; i++){
+			DayTrip parent = a[i].getParent();
+			output[i].setStartTime(a[i].getStartTime());
+			output[i].setEndTime(a[i].getEndTime());
+			output[i].setLocation(parent.getRegion());
+			output[i].setPrice(parent.getPrice());
+			output[i].setNumSeatsAvail(a[i].getNumSeatsAvail());
+			output[i].setCategory(parent.getCategory());		
+		}
+		return output;
 	}
 	
 	//returns all IndivDayTrips that have Hotel as picup location
-	public IndivDayTrip[] searchByPickup(Hotel hotel){
-		IndivDayTrip[] a = null;
+	public Info[] searchByPickup(Hotel hotel){
+		Info[] a = null;
 		return a;
 	}
 	
 	//returns all DayTrips that have loc as a location
-	public DayTrip[] searchByLoc(String loc){
-		DayTrip[] a = null;
+	public Info[] searchByLoc(String loc){
+		Info[] a = null;
 		return a;
 	}
 	
@@ -60,10 +70,14 @@ public class Searcher {
 		return this.temp[select];
 	}
 	
-	public DayTrip[] getAll(){
+	public Info[] getAll(){
 		return null;
 	}
 	
+	public DayTrip[] selectTrip(DayTrip d){
+		DayTrip[] a = null;
+		return a;
+	};
 	
 	
 	public static void main(String[] args) {

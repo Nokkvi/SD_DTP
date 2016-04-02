@@ -1,7 +1,7 @@
 package classes;
 public class DayTrip {
 	private String name;
-	private String[] category;
+	private String category;
 	private Hotel[] PickupLocation;
 	private String address;
 	private static String descr;
@@ -9,16 +9,18 @@ public class DayTrip {
 	private String region;
 	private static String[] keyWords;
 	private IndivDayTripList indiv;
+	private int price;
 	
 	public DayTrip(String name,
-			String[] category,
+			String category,
 			String[] comp,
 			Hotel[] PickupLocation,
 			String address,
 			String region,
 			RatingList ratings,
 			Double toRating,
-			IndivDayTripList indiv){
+			IndivDayTripList indiv,
+			int pr){
 		this.name = name;
 		this.category = category;
 		this.PickupLocation = PickupLocation;
@@ -28,6 +30,7 @@ public class DayTrip {
 		descr = null;
 		this.indiv = indiv;
 		keyWords = null;
+		this.price = pr;
 	}
 	public static IndivDayTrip selectIndiv(IndivDayTrip indiv){
 		return indiv;
@@ -48,6 +51,19 @@ public class DayTrip {
 		Rating rating = new Rating(this, n, comment, user);
 		return rating;
 	}
+	
+	public String getRegion(){
+		return this.region;
+	}
+	
+	public int getPrice(){
+		return this.price;
+	}
+	
+	public String getCategory(){
+		return this.category;
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("Þetta er DayTrip Klasinn");

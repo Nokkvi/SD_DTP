@@ -1,24 +1,26 @@
 package classes;
+import interfaces.*;
+import java.util.Date;
 
 
-public class Info {
+public class Info implements I_Info{
 	
-	private String startTime;
-	private String endTime;
+	private Date startTime;
+	private Date endTime;
 	private String location;
 	private int price;
 	private int  numSeatsAvail;
 	private String category;
 	
-	public void setStart(String x){
+	public void setStartTime(Date x){
 		this.startTime = x;
 	}
 	
-	public void setEnd(String x){
+	public void setEndTime(Date x){
 		this.endTime = x;
 	}
 	
-	public void setLoc(String x){
+	public void setLocation(String x){
 		this.location = x;
 	}
 	
@@ -26,23 +28,23 @@ public class Info {
 		this.price = x;
 	}
 	
-	public void setSeats(int x){
+	public void setNumSeatsAvail(int x){
 		this.numSeatsAvail = x;
 	}
 	
-	public void setCat(String x){
+	public void setCategory(String x){
 		this.category = x;
 	}
 	
-	public String getStart(){
+	public Date getStartTime(){
 		return this.startTime;
 	}
 	
-	public String getEnd(){
+	public Date getEndTime(){
 		return this.endTime;
 	}
 	
-	public String getLoc(){
+	public String getLocation(){
 		return this.location;
 	}
 	
@@ -50,11 +52,11 @@ public class Info {
 		return this.price;
 	}
 	
-	public int getSeats(){
+	public int getNumSeatsAvail(){
 		return this.numSeatsAvail;
 	}
 	
-	public String getCat(){
+	public String getCategory(){
 		return this.category;
 	}
 	
