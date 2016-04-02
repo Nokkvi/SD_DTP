@@ -16,6 +16,7 @@ public class M_IndivDayTripList implements I_IndivDayTripList{
 		
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public IndivDayTrip[] pullIndivDayTrip(int s) {
 		//IndivDayTrip(Date ST, Date ET, int nSA, DayTrip p)
@@ -37,11 +38,11 @@ public class M_IndivDayTripList implements I_IndivDayTripList{
 		DayTrip dTrip2 = new DayTrip("IceCercize", "Jazzecize", "jazzklubburinn", hothells, "djassbunga 47", "UtIRassgati", 696969);
 		
 		IndivDayTrip[] trips = new IndivDayTrip[5];
-		trips[0] = new IndivDayTrip(new Date(2016, 6, 12, 16, 0), new Date(2016, 6, 12, 18, 30), 16, dTrip1);
-		trips[1] = new IndivDayTrip(new Date(2016, 6, 15, 16, 0), new Date(2016, 6, 15, 18, 30), 23, dTrip1);
-		trips[2] = new IndivDayTrip(new Date(2016, 8, 3, 12, 0), new Date(2016, 8, 4, 15, 0), 50, dTrip2);
-		trips[3] = new IndivDayTrip(new Date(2016, 8, 10, 12, 0), new Date(2016, 8, 11, 15, 0), 50, dTrip2);
-		trips[4] = new IndivDayTrip(new Date(2016, 8, 17, 12, 0), new Date(2016, 8, 18, 15, 0), 50, dTrip2);
+		trips[0] = new IndivDayTrip(new Date(116, 6, 12, 16, 0), new Date(116, 6, 12, 18, 30), 16, dTrip1);
+		trips[1] = new IndivDayTrip(new Date(116, 6, 15, 16, 0), new Date(116, 6, 15, 18, 30), 23, dTrip1);
+		trips[2] = new IndivDayTrip(new Date(116, 8, 3, 12, 0), new Date(116, 8, 4, 15, 0), 50, dTrip2);
+		trips[3] = new IndivDayTrip(new Date(116, 8, 10, 12, 0), new Date(116, 8, 11, 15, 0), 50, dTrip2);
+		trips[4] = new IndivDayTrip(new Date(116, 8, 17, 12, 0), new Date(116, 8, 18, 15, 0), 50, dTrip2);
 		
 		return trips;
 	}

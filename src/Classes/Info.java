@@ -5,12 +5,17 @@ import java.util.Date;
 
 public class Info implements I_Info{
 	
+	private String name;
 	private Date startTime;
 	private Date endTime;
 	private String location;
 	private int price;
 	private int  numSeatsAvail;
 	private String category;
+	
+	public void setName(String x){
+		this.name = x;
+	}
 	
 	public void setStartTime(Date x){
 		this.startTime = x;
@@ -34,6 +39,10 @@ public class Info implements I_Info{
 	
 	public void setCategory(String x){
 		this.category = x;
+	}
+	
+	public String getName(){
+		return this.name;
 	}
 	
 	public Date getStartTime(){

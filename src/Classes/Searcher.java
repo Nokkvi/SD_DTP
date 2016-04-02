@@ -2,19 +2,20 @@ package classes;
 
 import java.util.Date;
 import interfaces.*;
+import mockObjects.M_IndivDayTripList;
 
 public class Searcher implements I_Searcher{
 	private DayTrip[] temp;
 	private IndivDayTrip[] indivTemp;
 	private DayTripList trips;
-	private IndivDayTripList indivTrips;
+	private M_IndivDayTripList indivTrips;
 	//private Info output;
 	
 	public Searcher(){
 		temp = new DayTrip[20];
 		indivTemp = new IndivDayTrip[20];
 		trips = new DayTripList();
-		indivTrips = new IndivDayTripList();
+		indivTrips = new M_IndivDayTripList();
 	}
 	
 	//returns all IndivDayTrips that take place after pre and before post
@@ -25,7 +26,7 @@ public class Searcher implements I_Searcher{
 	
 	//returns all IndivDayTrips that have seatsAvailable equal to or exceeding size
 	public Info[] searchBySize(int size){
-		IndivDayTrip[] a = indivTrips.pullIndivDayTrip(size);
+		IndivDayTrip[] a = indivTrips.pullIndivDayTrip(5);
 		Info[] output = new Info[a.length];
 		for(int i = 0; i < a.length; i++){
 			DayTrip parent = a[i].getParent();
@@ -82,7 +83,6 @@ public class Searcher implements I_Searcher{
 	
 	public static void main(String[] args) {
 		System.out.println("�etta er Searcher Klasinn");
-
 	}
 
 }
