@@ -1,17 +1,18 @@
 package interfaces;
+import java.util.Date;
 
 public interface I_Info {
-	public String getStartTime();
-	public String getEndTime();
+	public Date getStartTime();
+	public Date getEndTime();
 	public String getLocation();
 	public int getPrice();
 	public int getNumSeatsAvail();
 	public String getCategory();
 	
-	public void setStartTime();
-	public void setEndTime();
-	public void setLocation();
-	public void setPrice();
-	public void setNumSeatsAvail();
-	public void setCategory();
+	public void setStartTime(Date x);
+	public void setEndTime(Date x);
+	public void setLocation(String x);
+	public void setPrice(int x);
+	public void setNumSeatsAvail(int x);
+	public void setCategory(String x);
 }

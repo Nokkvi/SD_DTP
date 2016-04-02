@@ -3,7 +3,7 @@ import classes.*;
 import java.util.Date;
 
 public interface I_Searcher {
-	public Info[] searchByTime(Date d);
+	public Info[] searchByTime(Date pre, Date Post);
 	public Info[] searchBySize(int s);
 	public Info[] searchByPickup(Hotel h);
 	public Info[] searchByLoc(String s);
