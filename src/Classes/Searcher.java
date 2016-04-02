@@ -8,14 +8,14 @@ public class Searcher implements I_Searcher{
 	private DayTrip[] temp;
 	private IndivDayTrip[] indivTemp;
 	private DayTripList trips;
-	private M_IndivDayTripList indivTrips;
+	private I_IndivDayTripList indivTrips;
 	//private Info output;
 	
-	public Searcher(){
-		temp = new DayTrip[20];
-		indivTemp = new IndivDayTrip[20];
-		trips = new DayTripList();
-		indivTrips = new M_IndivDayTripList();
+	public Searcher(I_IndivDayTripList i){
+		this.temp = new DayTrip[20];
+		this.indivTemp = new IndivDayTrip[20];
+		this.trips = new DayTripList();
+		this.indivTrips = i;
 	}
 	
 	//returns all IndivDayTrips that take place after pre and before post
@@ -26,17 +26,19 @@ public class Searcher implements I_Searcher{
 	
 	//returns all IndivDayTrips that have seatsAvailable equal to or exceeding size
 	public Info[] searchBySize(int size){
-		IndivDayTrip[] a = indivTrips.pullIndivDayTrip(5);
+		IndivDayTrip[] a = indivTrips.pullIndivDayTrip(size);
 		Info[] output = new Info[a.length];
 		for(int i = 0; i < a.length; i++){
 			DayTrip parent = a[i].getParent();
-			output[i].setName(parent.getName());
-			output[i].setStartTime(a[i].getStartTime());
-			output[i].setEndTime(a[i].getEndTime());
-			output[i].setLocation(parent.getRegion());
-			output[i].setPrice(parent.getPrice());
-			output[i].setNumSeatsAvail(a[i].getNumSeatsAvail());
-			output[i].setCategory(parent.getCategory());		
+			Info temp = new Info();
+			temp.setName(parent.getName());
+			temp.setStartTime(a[i].getStartTime());
+			temp.setEndTime(a[i].getEndTime());
+			temp.setLocation(parent.getRegion());
+			temp.setPrice(parent.getPrice());
+			temp.setNumSeatsAvail(a[i].getNumSeatsAvail());
+			temp.setCategory(parent.getCategory());
+			output[i] = temp;
 		}
 		return output;
 	}

@@ -12,6 +12,7 @@ public class Info implements I_Info{
 	private int price;
 	private int  numSeatsAvail;
 	private String category;
+
 	
 	public void setName(String x){
 		this.name = x;
