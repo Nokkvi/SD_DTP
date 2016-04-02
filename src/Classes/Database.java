@@ -17,7 +17,7 @@ public class Database implements I_Database {
 		      System.out.println("Opened database successfully");
 
 		      stmt = c.createStatement();
-		      String sql = "CREATE TABLE Daytrip " +
+		      String sql = "CREATE TABLE SDaytrip " +
 		                   "(NAME CHAR(50) PRIMARY KEY  NOT NULL," +
 		                   " COMPANY        CHAR(50), " + 
 		                   " Rating           REAL, " + 
@@ -26,6 +26,36 @@ public class Database implements I_Database {
 		                   " DESCR			CHAR(100)," + 
 		                   " KEYWORDS		CHAR(255)," +
 		                   " CATEGORY		CHAR(255))"; 
+		      stmt.executeUpdate(sql);
+		      
+		      sql = "CREATE TABLE indivDaytrip " +
+		    		   "(ID INT PRIMARY KEY  NOT NULL," +
+		    		   " STARTTIME        DATE, " + 
+	                   " ENDTIME          DATE, " + 
+	                   " DAYTRIP          CHAR(50), " + 
+	                   " NUMSEATSAVAIL    INT)"; 
+		      stmt.executeUpdate(sql);
+		      
+		      sql = "CREATE TABLE RatingList " +
+	                   "(NAME CHAR(50) PRIMARY KEY  NOT NULL," +
+	                   " RATETIME         DATE, " + 
+	                   " Rating           INT, " + 
+	                   " COMMENT        CHAR(255), " + 
+	                   " USER 			CHAR(50))";
+		      stmt.executeUpdate(sql);
+		      
+		      sql = "CREATE TABLE Users " +
+		    		   " (USERID	  INT	   ," +
+	                   " NAME         CHAR(50), " + 
+	                   " TOWN         CHAR(50), " + 
+	                   " HOTEL        CHAR(50))";
+		     
+		      stmt.executeUpdate(sql);
+		      sql = "CREATE TABLE Booking " +
+	                   " (USER          CHAR(50), " + 
+	                   " TRIPID          INT, " + 
+	                   " PARENT         CHAR(50), " + 
+	                   " SEATS    		 INT)";
 		      stmt.executeUpdate(sql);
 		      stmt.close();
 		      c.close();
