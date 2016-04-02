@@ -13,11 +13,11 @@ public class Database implements I_Database {
 		    Statement stmt = null;
 		    try {
 		      Class.forName("org.sqlite.JDBC");
-		      c = DriverManager.getConnection("jdbc:sqlite:test.db");
+		      c = DriverManager.getConnection("jdbc:sqlite:smjee.db");
 		      System.out.println("Opened database successfully");
 
 		      stmt = c.createStatement();
-		      String sql = "CREATE TABLE SDaytrip " +
+		      String sql = "CREATE TABLE Daytrip " +
 		                   "(NAME CHAR(50) PRIMARY KEY  NOT NULL," +
 		                   " COMPANY        CHAR(50), " + 
 		                   " Rating           REAL, " + 
@@ -41,18 +41,18 @@ public class Database implements I_Database {
 	                   " RATETIME         DATE, " + 
 	                   " Rating           INT, " + 
 	                   " COMMENT        CHAR(255), " + 
-	                   " USER 			CHAR(50))";
+	                   " USERID 		  INT)";
 		      stmt.executeUpdate(sql);
 		      
 		      sql = "CREATE TABLE Users " +
-		    		   " (USERID	  INT	   ," +
+		    		   " (USERID INT PRIMARY KEY NOT NULL," +
 	                   " NAME         CHAR(50), " + 
 	                   " TOWN         CHAR(50), " + 
 	                   " HOTEL        CHAR(50))";
 		     
 		      stmt.executeUpdate(sql);
 		      sql = "CREATE TABLE Booking " +
-	                   " (USER          CHAR(50), " + 
+	                   " (USERID INT PRIMARY KEY NOT NULL," + 
 	                   " TRIPID          INT, " + 
 	                   " PARENT         CHAR(50), " + 
 	                   " SEATS    		 INT)";
