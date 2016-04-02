@@ -55,6 +55,10 @@ public class DayTrip {
 		return this.region;
 	}
 	
+	public String getName(){
+		return this.name;
+	}
+	
 	public int getPrice(){
 		return this.price;
 	}

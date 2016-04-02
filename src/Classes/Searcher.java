@@ -30,6 +30,7 @@ public class Searcher implements I_Searcher{
 		Info[] output = new Info[a.length];
 		for(int i = 0; i < a.length; i++){
 			DayTrip parent = a[i].getParent();
+			output[i].setName(parent.getName());
 			output[i].setStartTime(a[i].getStartTime());
 			output[i].setEndTime(a[i].getEndTime());
 			output[i].setLocation(parent.getRegion());
