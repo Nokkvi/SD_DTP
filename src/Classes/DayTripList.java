@@ -1,11 +1,32 @@
+<<<<<<< HEAD
 package classes;
+=======
+package Classes;
+import interfaces.*;
+import java.sql.*;
+>>>>>>> origin/master
 
 
-public class DayTripList {
+public class DayTripList implements I_DayTripList {
 
-	public static void main(String[] args) {
-		System.out.println("ﬁetta er DayTripList Klasinn");
+    @Override
+    public void addDayTrip(DayTrip d) {
+        // TODO Auto-generated method stub
+        
+    }
 
-	}
+    @Override
+    public DayTrip[] pullDayTrip() {
+        //TODO Kl√°ra
+        //ResultSet rs = Database.search("SELECT * FROM Daytrips");
+        return null;
+    }
+
+    @Override
+    public void removeDayTrip(DayTrip d) {
+        // TODO Auto-generated method stub
+        
+    }
+
 
 }
