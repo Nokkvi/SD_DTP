@@ -4,7 +4,7 @@ package classes;
 public class GUI {
 
 	public static void main(String[] args) {
-		System.out.println("Þetta er viðmóts klasinn");
+		System.out.println("ï¿½etta er viï¿½mï¿½ts klasinn");
 	}
 
 }

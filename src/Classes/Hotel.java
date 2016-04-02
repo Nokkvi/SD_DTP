@@ -3,6 +3,6 @@ package classes;
 
 public class Hotel {
 	public static void main(String[] args){
-		System.out.println("Þetta er Hotel Klasinn");
+		System.out.println("ï¿½etta er Hotel Klasinn");
 	}
 }

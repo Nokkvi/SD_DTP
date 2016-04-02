@@ -4,7 +4,7 @@ package classes;
 public class Booker {
 
 	public static void main(String[] args) {
-		System.out.println("Þetta er Booker klasinn");
+		System.out.println("ï¿½etta er Booker klasinn");
 
 	}
 

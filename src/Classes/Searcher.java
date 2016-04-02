@@ -67,7 +67,7 @@ public class Searcher {
 	
 	
 	public static void main(String[] args) {
-		System.out.println("Þetta er Searcher Klasinn");
+		System.out.println("ï¿½etta er Searcher Klasinn");
 
 	}
 
