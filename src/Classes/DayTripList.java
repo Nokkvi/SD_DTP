@@ -1,10 +1,8 @@
-<<<<<<< HEAD
 package classes;
-=======
-package Classes;
+
 import interfaces.*;
 import java.sql.*;
->>>>>>> origin/master
+
 
 
 public class DayTripList implements I_DayTripList {

@@ -1,5 +1,5 @@
 package interfaces;
-import Classes.*;
+import classes.*;
 import java.sql.*;
 
 public interface I_Database {

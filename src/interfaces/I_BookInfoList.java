@@ -1,5 +1,5 @@
 package interfaces;
-import Classes.*;
+import classes.*;
 
 public interface I_BookInfoList {
 	public void addBooking(BookingInfo b);

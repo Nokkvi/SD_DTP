@@ -1,5 +1,5 @@
 package interfaces;
-import Classes.*;
+import classes.*;
 
 public interface I_RatingList {
 	public void addRating(Rating r);

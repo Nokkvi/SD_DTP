@@ -1,5 +1,5 @@
 package interfaces;
-import Classes.*;
+import classes.*;
 import java.util.Date;
 
 public interface I_Searcher {

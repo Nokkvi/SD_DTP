@@ -1,5 +1,5 @@
 package interfaces;
-import Classes.*;
+import classes.*;
 
 public interface I_DayTripList {
 	public void addDayTrip(DayTrip d);
