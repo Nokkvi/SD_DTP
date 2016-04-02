@@ -21,8 +21,8 @@ public class SearcherTest {
 	
 	@Test
 	public void test() {
-		Info[] k = search.searchBySize(5);
-		for(int i = 0; i < 5;i++){
+		Info[] k = search.searchBySize(25);
+		for(int i = 0; i < k.length;i++){
 			String blee = "";
 			blee = k[i].getName();
 			System.out.println(blee);
