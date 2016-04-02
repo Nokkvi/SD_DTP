@@ -10,27 +10,26 @@ public class DayTrip {
 	private static String[] keyWords;
 	private IndivDayTripList indiv;
 	private int price;
+	private String company;
 	
 	public DayTrip(String name,
 			String category,
-			String[] comp,
+			String comp,
 			Hotel[] PickupLocation,
 			String address,
 			String region,
-			RatingList ratings,
-			Double toRating,
-			IndivDayTripList indiv,
 			int pr){
 		this.name = name;
 		this.category = category;
 		this.PickupLocation = PickupLocation;
 		this.address = address;
 		this.region = region;
-		this.ratings = ratings;
+		this.ratings = new RatingList();
 		descr = null;
-		this.indiv = indiv;
+		this.indiv = new IndivDayTripList();
 		keyWords = null;
 		this.price = pr;
+		this.company = comp;
 	}
 	public static IndivDayTrip selectIndiv(IndivDayTrip indiv){
 		return indiv;
