@@ -4,7 +4,7 @@ package classes;
 public class BookInfoList {
 
 	public static void main(String[] args) {
-		System.out.println("Þetta er BookInfoList Klasinn");
+		System.out.println("ï¿½etta er BookInfoList Klasinn");
 
 	}
 

@@ -7,7 +7,7 @@ public class IndivDayTripList implements I_IndivDayTripList{
 
 	
 	public static void main(String[] args) {
-		System.out.println("Þetta er IndivDayTripList Klasinn");
+		System.out.println("ï¿½etta er IndivDayTripList Klasinn");
 
 	}
 

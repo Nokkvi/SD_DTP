@@ -61,7 +61,7 @@ public class Info implements I_Info{
 	}
 	
 	public static void main(String[] args) {
-		System.out.println("Þetta er Info Klasinn");
+		System.out.println("ï¿½etta er Info Klasinn");
 
 	}
 

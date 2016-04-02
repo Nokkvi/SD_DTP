@@ -19,13 +19,13 @@ public class Database implements I_Database {
 		      stmt = c.createStatement();
 		      String sql = "CREATE TABLE Daytrip " +
 		                   "(NAME CHAR(50) PRIMARY KEY  NOT NULL," +
-		                   " COMPANY        CHAR(50)    NOT NULL, " + 
-		                   " Rating           REAL      NOT NULL, " + 
+		                   " COMPANY        CHAR(50), " + 
+		                   " Rating           REAL, " + 
 		                   " ADDRESS        CHAR(50), " + 
-		                   " PRICE            INT," +
+		                   " PRICE            INT,"+
 		                   " DESCR			CHAR(100)," + 
 		                   " KEYWORDS		CHAR(255)," +
-		                   " CATEGORY		CHAR(255)"; 
+		                   " CATEGORY		CHAR(255))"; 
 		      stmt.executeUpdate(sql);
 		      stmt.close();
 		      c.close();

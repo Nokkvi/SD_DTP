@@ -21,7 +21,7 @@ public class Rating {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println("Þetta er Rating Klasinn");
+		System.out.println("ï¿½etta er Rating Klasinn");
 
 	}
 
