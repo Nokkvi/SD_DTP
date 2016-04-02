@@ -1,4 +1,4 @@
-package Classes;
+package classes;
 public class DayTrip {
 	private String name;
 	private String[] category;

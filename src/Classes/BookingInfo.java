@@ -1,4 +1,4 @@
-package Classes;
+package classes;
 public class BookingInfo {
 	private User user;
 	private IndivDayTrip trip;
