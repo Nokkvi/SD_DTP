@@ -8,9 +8,14 @@ import classes.IndivDayTripList;
 import classes.RatingList;
 import interfaces.*;
 
+//A mock object that provides a general test for Searcher.searchBySize().
+//Intended functionality of IndivDayTripList is to create IndivDayTrip objects for each individual Day Trip for the 
+//Searcher to sift through. This Mock object creates a few pre-determined IndivDayTrips to test the functionality of the
+//Searcher
 public class M_IndivDayTripListGeneral implements I_IndivDayTripList{
 
 	@Override
+	//Supposed to add an IndivDayTrip to the database. Not implemented for this test.
 	public void addIndivDayTrip(IndivDayTrip d) {
 		// TODO Auto-generated method stub
 		
@@ -18,25 +23,21 @@ public class M_IndivDayTripListGeneral implements I_IndivDayTripList{
 
 	@SuppressWarnings("deprecation")
 	@Override
+	//Supposed to create IndivDayTrip objects for each individual day trips. Creates a few objects with variable numSeatsLeft
+	//to test Searcher.searchBySize.
 	public IndivDayTrip[] pullIndivDayTrip() {
-		//IndivDayTrip(Date ST, Date ET, int nSA, DayTrip p)
-		/*DayTrip(String name,
-			String category,
-			String comp,
-			Hotel[] PickupLocation,
-			String address,
-			String region,
-			int pr)*/
 		
+		//A mock array of unimplemented Hotels
 		Hotel hothells[] = new Hotel[3];
 		for(int i = 0; i < 3; i++){
 			hothells[i] = new Hotel();
 		}
 		
-		
+		//DayTrip objects to use as parents
 		DayTrip dTrip1 = new DayTrip("Rafting in Iceland", "Rafting", "IceRaft", hothells, "Spraenutorg 18", "NorduogNidur", 123456);
 		DayTrip dTrip2 = new DayTrip("IceCercize", "Jazzecize", "jazzklubburinn", hothells, "djassbunga 47", "UtIRassgati", 696969);
 		
+		//An array of IndivDayTrips to return to the Searcher.
 		IndivDayTrip[] trips = new IndivDayTrip[14];
 		trips[0] = new IndivDayTrip(0,new Date(116, 6, 12, 16, 0), new Date(116, 6, 12, 18, 30), 16, dTrip1);
 		trips[1] = new IndivDayTrip(1,new Date(116, 6, 15, 16, 0), new Date(116, 6, 15, 18, 30), 23, dTrip1);
@@ -57,6 +58,7 @@ public class M_IndivDayTripListGeneral implements I_IndivDayTripList{
 	}
 
 	@Override
+	//Supposed to remove an IndivDayTrip from the database. Not implemented for this test.
 	public void removeIndivDayTrip(IndivDayTrip d) {
 		// TODO Auto-generated method stub
 		
