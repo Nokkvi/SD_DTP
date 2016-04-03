@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import classes.*;
 
-public class TimeSearcherTEst {
+public class SizeSearcherTest {
 	private Searcher searchG;
 	private Searcher searchL;
 	private Searcher searchE;
@@ -20,9 +20,9 @@ public class TimeSearcherTEst {
 
 	@Before
 	public void setUp() throws Exception {
-		I_IndivDayTripList tGen = new M_IndivDayTripList_Time();
-		I_IndivDayTripList tLar = new M_IndivDayTripList_TimeL();
-		I_IndivDayTripList tEmp = new M_IndivDayTripList_TimeE();
+		I_IndivDayTripList tGen = new M_IndivDayTripList_Size();
+		I_IndivDayTripList tLar = new M_IndivDayTripList_SizeL();
+		I_IndivDayTripList tEmp = new M_IndivDayTripList_SizeE();
 		
 		searchG = new Searcher(tGen);
 		searchL = new Searcher(tLar);
@@ -32,7 +32,7 @@ public class TimeSearcherTEst {
 	@Test
 	public void testGeneral() {
 		System.out.println("Testing with general Input");
-		Info[] k = searchG.searchByTime(new Date(116,8,12,18,11),new Date(117,8,12,18,11));
+		Info[] k = searchG.searchBySize(25);
 		for(int i = 0; i < k.length;i++){
 			String blee = "";
 			int id = 0;
@@ -46,7 +46,7 @@ public class TimeSearcherTEst {
 	@Test
 	public void testLarge() {
 		System.out.println("Testing with large Input");
-		Info[] k = searchL.searchByTime(new Date(116,6,12,18,11),new Date(117,8,12,18,11));
+		Info[] k = searchL.searchBySize(25);
 		for(int i = 0; i < k.length;i++){
 			String blee = "";
 			int id = 0;
@@ -60,7 +60,7 @@ public class TimeSearcherTEst {
 	@Test
 	public void testEmpty() {
 		System.out.println("Testing with input that returns no usable values");
-		Info[] k = searchE.searchByTime(new Date(117,8,12,18,11),new Date(117,8,12,18,11));
+		Info[] k = searchE.searchBySize(25);
 		for(int i = 0; i < k.length;i++){
 			String blee = "";
 			int id = 0;
