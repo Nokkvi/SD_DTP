@@ -20,8 +20,30 @@ public class Searcher implements I_Searcher{
 
 	//returns all IndivDayTrips that take place after pre and before post
 	public Info[] searchByTime(Date pre, Date post){
-		Info[] a = null;
-		return a;
+		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
+		Info[] output = new Info[a.length];
+		int k = 0;
+		for(int i = 0; i < a.length; i++){
+			if((pre.compareTo(a[i].getStartTime())<0)&&(post.compareTo(a[i].getEndTime())>0)){
+				DayTrip parent = a[i].getParent();
+				Info temp = new Info();
+				temp.setIndivId(a[i].getId());
+				temp.setName(parent.getName());
+				temp.setStartTime(a[i].getStartTime());
+				temp.setEndTime(a[i].getEndTime());
+				temp.setLocation(parent.getRegion());
+				temp.setPrice(parent.getPrice());
+				temp.setNumSeatsAvail(a[i].getNumSeatsAvail());
+				temp.setCategory(parent.getCategory());
+				output[k] = temp;
+				k++;
+			}
+		}
+		Info[] trueOut = new Info[k];
+		for(int p = 0;p < k;p++){
+			trueOut[p] = output[p];
+		}
+		return trueOut;
 	}
 
 	//returns all IndivDayTrips that have seatsAvailable equal to or exceeding size
