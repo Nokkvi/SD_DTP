@@ -8,7 +8,7 @@ import classes.IndivDayTripList;
 import classes.RatingList;
 import interfaces.*;
 
-public class M_IndivDayTripList implements I_IndivDayTripList{
+public class M_IndivDayTripListGeneral implements I_IndivDayTripList{
 
 	@Override
 	public void addIndivDayTrip(IndivDayTrip d) {
@@ -43,15 +43,15 @@ public class M_IndivDayTripList implements I_IndivDayTripList{
 		trips[2] = new IndivDayTrip(2,new Date(116, 8, 3, 12, 0), new Date(116, 8, 4, 15, 0), 50, dTrip2);
 		trips[3] = new IndivDayTrip(3,new Date(116, 8, 10, 12, 0), new Date(116, 8, 11, 15, 0), 50, dTrip2);
 		trips[4] = new IndivDayTrip(4,new Date(116, 8, 17, 12, 0), new Date(116, 8, 18, 15, 0), 50, dTrip2);
-		trips[5] = new IndivDayTrip(5,new Date(116, 8, 17, 12, 0), new Date(116, 8, 18, 15, 0), 50, dTrip2);
-		trips[6] = new IndivDayTrip(6,new Date(116, 8, 17, 12, 0), new Date(116, 8, 18, 15, 0), 50, dTrip2);
-		trips[7] = new IndivDayTrip(7,new Date(116, 8, 17, 12, 0), new Date(116, 8, 18, 15, 0), 50, dTrip2);
-		trips[8] = new IndivDayTrip(8,new Date(116, 8, 17, 12, 0), new Date(116, 8, 18, 15, 0), 50, dTrip2);
-		trips[9] = new IndivDayTrip(9,new Date(116, 8, 17, 12, 0), new Date(116, 8, 18, 15, 0), 50, dTrip2);
-		trips[10] = new IndivDayTrip(10,new Date(116, 8, 17, 12, 0), new Date(116, 8, 18, 15, 0), 50, dTrip2);
-		trips[11] = new IndivDayTrip(11,new Date(116, 8, 17, 12, 0), new Date(116, 8, 18, 15, 0), 50, dTrip2);
-		trips[12] = new IndivDayTrip(12,new Date(116, 8, 17, 12, 0), new Date(116, 8, 18, 15, 0), 50, dTrip2);
-		trips[13] = new IndivDayTrip(13,new Date(116, 8, 17, 12, 0), new Date(116, 8, 18, 15, 0), 50, dTrip2);
+		trips[5] = new IndivDayTrip(5,new Date(116, 10, 17, 8, 0), new Date(116, 10, 18, 0, 0), 50, dTrip2);
+		trips[6] = new IndivDayTrip(6,new Date(116, 10, 17, 10, 0), new Date(116, 10, 17, 15, 0), 50, dTrip2);
+		trips[7] = new IndivDayTrip(7,new Date(116, 10, 17, 12, 0), new Date(116, 10, 17, 17, 0), 50, dTrip2);
+		trips[8] = new IndivDayTrip(8,new Date(116, 10, 17, 14, 0), new Date(116, 10, 17, 15, 0), 50, dTrip2);
+		trips[9] = new IndivDayTrip(9,new Date(116, 11, 17, 16, 0), new Date(116, 11, 17, 22, 0), 50, dTrip2);
+		trips[10] = new IndivDayTrip(10,new Date(117, 0, 5, 12, 0), new Date(117, 0, 5, 15, 0), 50, dTrip2);
+		trips[11] = new IndivDayTrip(11,new Date(117, 0, 7, 12, 0), new Date(117, 0, 7, 15, 0), 50, dTrip2);
+		trips[12] = new IndivDayTrip(12,new Date(117, 0, 9, 12, 0), new Date(117, 0, 9, 15, 0), 50, dTrip2);
+		trips[13] = new IndivDayTrip(13,new Date(117, 0, 11, 12, 0), new Date(117, 0, 11, 15, 0), 50, dTrip2);
 		
 		return trips;
 	}

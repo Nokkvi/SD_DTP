@@ -1,6 +1,6 @@
 package testFixtures;
 import static org.junit.Assert.*;
-import mockObjects.M_IndivDayTripList;
+import mockObjects.M_IndivDayTripListGeneral;
 import interfaces.*;
 
 import org.junit.After;
@@ -15,7 +15,7 @@ public class SearcherTest {
 
 	@Before
 	public void setUp() throws Exception {
-		I_IndivDayTripList i = new M_IndivDayTripList();
+		I_IndivDayTripList i = new M_IndivDayTripListGeneral();
 		search = new Searcher(i);
 	}
 	

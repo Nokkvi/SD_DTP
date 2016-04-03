@@ -2,7 +2,7 @@ package classes;
 
 import java.util.Date;
 import interfaces.*;
-import mockObjects.M_IndivDayTripList;
+import mockObjects.M_IndivDayTripListGeneral;
 
 public class Searcher implements I_Searcher{
 	private DayTrip[] temp;
