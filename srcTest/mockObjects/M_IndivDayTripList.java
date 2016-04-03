@@ -18,7 +18,7 @@ public class M_IndivDayTripList implements I_IndivDayTripList{
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public IndivDayTrip[] pullIndivDayTrip(int s) {
+	public IndivDayTrip[] pullIndivDayTrip() {
 		//IndivDayTrip(Date ST, Date ET, int nSA, DayTrip p)
 		/*DayTrip(String name,
 			String category,
@@ -37,12 +37,21 @@ public class M_IndivDayTripList implements I_IndivDayTripList{
 		DayTrip dTrip1 = new DayTrip("Rafting in Iceland", "Rafting", "IceRaft", hothells, "Spraenutorg 18", "NorduogNidur", 123456);
 		DayTrip dTrip2 = new DayTrip("IceCercize", "Jazzecize", "jazzklubburinn", hothells, "djassbunga 47", "UtIRassgati", 696969);
 		
-		IndivDayTrip[] trips = new IndivDayTrip[5];
+		IndivDayTrip[] trips = new IndivDayTrip[14];
 		trips[0] = new IndivDayTrip(new Date(116, 6, 12, 16, 0), new Date(116, 6, 12, 18, 30), 16, dTrip1);
 		trips[1] = new IndivDayTrip(new Date(116, 6, 15, 16, 0), new Date(116, 6, 15, 18, 30), 23, dTrip1);
 		trips[2] = new IndivDayTrip(new Date(116, 8, 3, 12, 0), new Date(116, 8, 4, 15, 0), 50, dTrip2);
 		trips[3] = new IndivDayTrip(new Date(116, 8, 10, 12, 0), new Date(116, 8, 11, 15, 0), 50, dTrip2);
 		trips[4] = new IndivDayTrip(new Date(116, 8, 17, 12, 0), new Date(116, 8, 18, 15, 0), 50, dTrip2);
+		trips[5] = new IndivDayTrip(new Date(116, 8, 17, 12, 0), new Date(116, 8, 18, 15, 0), 50, dTrip2);
+		trips[6] = new IndivDayTrip(new Date(116, 8, 17, 12, 0), new Date(116, 8, 18, 15, 0), 50, dTrip2);
+		trips[7] = new IndivDayTrip(new Date(116, 8, 17, 12, 0), new Date(116, 8, 18, 15, 0), 50, dTrip2);
+		trips[8] = new IndivDayTrip(new Date(116, 8, 17, 12, 0), new Date(116, 8, 18, 15, 0), 50, dTrip2);
+		trips[9] = new IndivDayTrip(new Date(116, 8, 17, 12, 0), new Date(116, 8, 18, 15, 0), 50, dTrip2);
+		trips[10] = new IndivDayTrip(new Date(116, 8, 17, 12, 0), new Date(116, 8, 18, 15, 0), 50, dTrip2);
+		trips[11] = new IndivDayTrip(new Date(116, 8, 17, 12, 0), new Date(116, 8, 18, 15, 0), 50, dTrip2);
+		trips[12] = new IndivDayTrip(new Date(116, 8, 17, 12, 0), new Date(116, 8, 18, 15, 0), 50, dTrip2);
+		trips[13] = new IndivDayTrip(new Date(116, 8, 17, 12, 0), new Date(116, 8, 18, 15, 0), 50, dTrip2);
 		
 		return trips;
 	}

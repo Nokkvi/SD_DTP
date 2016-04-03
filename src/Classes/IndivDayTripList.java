@@ -18,7 +18,7 @@ public class IndivDayTripList implements I_IndivDayTripList{
 	}
 
 	@Override
-	public IndivDayTrip[] pullIndivDayTrip(int s) {
+	public IndivDayTrip[] pullIndivDayTrip() {
 		// TODO Auto-generated method stub
 		return null;
 	}

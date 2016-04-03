@@ -26,7 +26,7 @@ public class Searcher implements I_Searcher{
 
 	//returns all IndivDayTrips that have seatsAvailable equal to or exceeding size
 	public Info[] searchBySize(int size){
-		IndivDayTrip[] a = indivTrips.pullIndivDayTrip(5);
+		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
 		Info[] output = new Info[a.length];
 		int k = 0;
 		for(int i = 0; i < a.length; i++){
