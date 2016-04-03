@@ -48,6 +48,7 @@ public class DayTrip {
 	
 	public Rating rate(int n, String comment, User user){
 		Rating rating = new Rating(this, n, comment, user);
+		RatingList.addRating(rating);
 		return rating;
 	}
 	

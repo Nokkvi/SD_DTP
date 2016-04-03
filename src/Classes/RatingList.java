@@ -1,4 +1,6 @@
 package classes;
+import java.util.Date;
+
 import interfaces.*;
 
 public class RatingList implements I_RatingList{
@@ -8,10 +10,8 @@ public class RatingList implements I_RatingList{
 
 	}
 
-	@Override
-	public void addRating(Rating r) {
+	public static void addRating(Rating r) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
