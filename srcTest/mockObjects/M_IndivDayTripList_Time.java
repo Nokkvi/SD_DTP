@@ -31,7 +31,7 @@ public class M_IndivDayTripList_Time implements I_IndivDayTripList{
 		DayTrip dTrip3 = new DayTrip("Galactic Circle", "Star Trippin'", "Icpace", hothells, "Stjörnutorg", "Kringlan", 1000000000);
 		DayTrip dTrip4 = new DayTrip("Futur Trip", "Caveman Tours", "Ugg's tirps", hothells, "einhver hellir", "UtogSudur", 2);
 		
-		IndivDayTrip[] trips = new IndivDayTrip[14];
+		IndivDayTrip[] trips = new IndivDayTrip[16];
 		trips[0] = new IndivDayTrip(0,new Date(116, 6, 12, 16, 0), new Date(116, 6, 12, 18, 30), 16, dTrip1);
 		trips[1] = new IndivDayTrip(1,new Date(116, 6, 15, 16, 0), new Date(116, 6, 15, 18, 30), 23, dTrip1);
 		trips[2] = new IndivDayTrip(2,new Date(116, 8, 3, 12, 0), new Date(116, 8, 4, 15, 0), 50, dTrip2);
