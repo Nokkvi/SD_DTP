@@ -3,17 +3,23 @@ package classes;
 import java.util.Date;
 
 public class IndivDayTrip {
+	private int id;
 	private Date startTime;
 	private Date endTime;
 	private int numSeatsAvailable;
 	private DayTrip parent;
 	
-	public IndivDayTrip(Date ST, Date ET, int nSA, DayTrip p){
+	public IndivDayTrip(int id, Date ST, Date ET, int nSA, DayTrip p){
+		this.id = id;
 		this.startTime = ST;
 		this.endTime = ET;		
 		this.numSeatsAvailable = nSA;
 		this.parent = p;
 
+	}
+	
+	public int getId(){
+		return this.id;
 	}
 	
 	public DayTrip getParent(){

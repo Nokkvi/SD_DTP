@@ -33,6 +33,7 @@ public class Searcher implements I_Searcher{
 			if(size <= a[i].getNumSeatsAvail()){
 				DayTrip parent = a[i].getParent();
 				Info temp = new Info();
+				temp.setIndivId(a[i].getId());
 				temp.setName(parent.getName());
 				temp.setStartTime(a[i].getStartTime());
 				temp.setEndTime(a[i].getEndTime());

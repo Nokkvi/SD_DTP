@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class Info implements I_Info{
 	
+	private int IndivId;
 	private String name;
 	private Date startTime;
 	private Date endTime;
@@ -13,6 +14,9 @@ public class Info implements I_Info{
 	private int  numSeatsAvail;
 	private String category;
 
+	public void setIndivId(int x){
+		this.IndivId = x;
+	}
 	
 	public void setName(String x){
 		this.name = x;
@@ -40,6 +44,10 @@ public class Info implements I_Info{
 	
 	public void setCategory(String x){
 		this.category = x;
+	}
+	
+	public int getIndivId(){
+		return this.IndivId;
 	}
 	
 	public String getName(){
