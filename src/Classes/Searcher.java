@@ -2,7 +2,7 @@ package classes;
 
 import java.util.Date;
 import interfaces.*;
-import mockObjects.M_IndivDayTripListGeneral;
+//import mockObjects.M_IndivDayTripListGeneral;
 
 public class Searcher implements I_Searcher{
 	private DayTrip[] temp;
@@ -73,17 +73,66 @@ public class Searcher implements I_Searcher{
 		}
 		return trueOut;
 	}
-
-	//returns all IndivDayTrips that have Hotel as picup location
+	
+	//returns all IndivDayTrips that have Hotel as pickup location
 	public Info[] searchByPickup(Hotel hotel){
-		Info[] a = null;
-		return a;
+		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
+		Info[] output = new Info[a.length];
+		int k = 0;
+		for(int i = 0; i < a.length; i++){
+			DayTrip parent = a[i].getParent();
+			Hotel[] h = parent.getPickups();
+			for(int j = 0; j < h.length; j++){
+				if(hotel == h[i]){
+					Info temp = new Info();
+					temp.setIndivId(a[i].getId());
+					temp.setName(parent.getName());
+					temp.setStartTime(a[i].getStartTime());
+					temp.setEndTime(a[i].getEndTime());
+					temp.setLocation(parent.getRegion());
+					temp.setPrice(parent.getPrice());
+					temp.setNumSeatsAvail(a[i].getNumSeatsAvail());
+					temp.setCategory(parent.getCategory());
+					output[k] = temp;
+					k++;
+				}
+			}
+		}
+		Info[] trueOut = new Info[k];
+		for(int p = 0;p < k;p++){
+			trueOut[p] = output[p];
+		}
+		return trueOut;
 	}
 
 	//returns all DayTrips that have loc as a location
+	//TODO: Muna að breyta formatti á region
 	public Info[] searchByLoc(String loc){
-		Info[] a = null;
-		return a;
+		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
+		Info[] output = new Info[a.length];
+		int k = 0;
+		for(int i = 0; i < a.length; i++){
+			DayTrip parent = a[i].getParent();
+			String r = parent.getRegion();
+			if(loc == r){
+				Info temp = new Info();
+				temp.setIndivId(a[i].getId());
+				temp.setName(parent.getName());
+				temp.setStartTime(a[i].getStartTime());
+				temp.setEndTime(a[i].getEndTime());
+				temp.setLocation(parent.getRegion());
+				temp.setPrice(parent.getPrice());
+				temp.setNumSeatsAvail(a[i].getNumSeatsAvail());
+				temp.setCategory(parent.getCategory());
+				output[k] = temp;
+				k++;
+			}
+		}
+		Info[] trueOut = new Info[k];
+		for(int p = 0;p < k;p++){
+			trueOut[p] = output[p];
+		}
+		return trueOut;
 	}
 
 	//returns all DayTrips that contain 
@@ -106,7 +155,23 @@ public class Searcher implements I_Searcher{
 	}
 
 	public Info[] getAll(){
-		return null;
+		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
+		Info[] output = new Info[a.length];
+		for(int i = 0; i < a.length; i++){
+			DayTrip parent = a[i].getParent();
+			Info temp = new Info();
+			temp.setIndivId(a[i].getId());
+			temp.setName(parent.getName());
+			temp.setStartTime(a[i].getStartTime());
+			temp.setEndTime(a[i].getEndTime());
+			temp.setLocation(parent.getRegion());
+			temp.setPrice(parent.getPrice());
+			temp.setNumSeatsAvail(a[i].getNumSeatsAvail());
+			temp.setCategory(parent.getCategory());
+			output[i] = temp;
+		}
+
+		return output;
 	}
 
 	public DayTrip[] selectTrip(DayTrip d){

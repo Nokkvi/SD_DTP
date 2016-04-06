@@ -2,7 +2,7 @@ package classes;
 public class DayTrip {
 	private String name;
 	private String category;
-	private Hotel[] PickupLocation;
+	private Hotel[] pickupLocation;
 	private String address;
 	private static String descr;
 	private RatingList ratings;
@@ -15,13 +15,13 @@ public class DayTrip {
 	public DayTrip(String name,
 			String category,
 			String comp,
-			Hotel[] PickupLocation,
+			Hotel[] pickupLocation,
 			String address,
 			String region,
 			int pr){
 		this.name = name;
 		this.category = category;
-		this.PickupLocation = PickupLocation;
+		this.pickupLocation = pickupLocation;
 		this.address = address;
 		this.region = region;
 		this.ratings = new RatingList();
@@ -66,6 +66,10 @@ public class DayTrip {
 	
 	public String getCategory(){
 		return this.category;
+	}
+	
+	public Hotel[] getPickups(){
+		return this.pickupLocation;
 	}
 	
 	public static void main(String[] args) {
