@@ -1,19 +1,41 @@
 package classes;
 import java.util.*;
-public class Rating {
+import interfaces.*;
 
-	private DayTrip parent;
+public class Rating implements I_Rating{
+
+	private DayTrip trip;
 	private Date dateTime;
 	private int rate;
 	private String comment;
 	private User user;
 	
 	public Rating(DayTrip par, int rat, String com, User usr){
-		this.parent = par;
+		this.trip = par;
 		this.dateTime = new Date();
 		this.rate = rat;
 		this.comment = com;
 		this.user = usr;
+	}
+	
+	public DayTrip getTrip(){
+		return this.trip;
+	}
+	
+	public Date getDate(){
+		return this.dateTime;
+	}
+	
+	public int getRate(){
+		return this.rate;
+	}
+	
+	public String getComment(){
+		return this.comment;
+	}
+	
+	public User getUser(){
+		return this.user;
 	}
 	
 	
