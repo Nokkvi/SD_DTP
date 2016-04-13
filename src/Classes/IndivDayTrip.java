@@ -27,10 +27,6 @@ public class IndivDayTrip implements I_IndivDayTrip{
 		return this.parent;
 	}
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println("�etta er IndivDayTrip Klasinn");
-	}
 	
 	public Date getStartTime(){
 		return this.startTime;
@@ -42,6 +38,11 @@ public class IndivDayTrip implements I_IndivDayTrip{
 	
 	public Date getEndTime(){
 		return this.endTime;
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("�etta er IndivDayTrip Klasinn");
 	}
 
 }

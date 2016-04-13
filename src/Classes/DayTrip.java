@@ -5,12 +5,9 @@ public class DayTrip implements I_DayTrip {
 	private String name;
 	private String category;
 	private String[] pickupLocation;
-	private String address;
 	private String descr;
-	private RatingList ratings;
 	private String region;
 	private String[] keyWords; //Af hverju var þetta static???
-	private IndivDayTripList indiv;
 	private int price;
 	private String company;
 	
@@ -24,11 +21,8 @@ public class DayTrip implements I_DayTrip {
 		this.name = name;
 		this.category = category;
 		this.pickupLocation = pickupLocation;
-		this.address = address;
 		this.region = region;
-		this.ratings = new RatingList();
 		descr = null;
-		this.indiv = new IndivDayTripList();
 		keyWords = null;
 		this.price = pr;
 		this.company = comp;
@@ -56,6 +50,10 @@ public class DayTrip implements I_DayTrip {
 		return rating;
 	}
 	
+	public String getDesc(){
+		return this.descr;
+	}
+	
 	public String getRegion(){
 		return this.region;
 	}
@@ -78,6 +76,10 @@ public class DayTrip implements I_DayTrip {
 	
 	public String[] getKeywords(){
 		return this.keyWords;
+	}
+	
+	public String getCompany(){
+		return this.company;
 	}
 	
 	public static void main(String[] args) {

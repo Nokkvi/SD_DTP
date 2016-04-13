@@ -8,27 +8,47 @@ import java.util.Vector;
 public class Searcher implements I_Searcher{
 	//private DayTrip[] temp;
 	//private IndivDayTrip[] indivTemp;
-	private DayTripList trips;
+	//private DayTripList trips;
 	private I_IndivDayTripList indivTrips;
 	//private Info output;
 
 	public Searcher(I_IndivDayTripList i){
 		//this.temp = new DayTrip[20];
 		//this.indivTemp = new IndivDayTrip[20];
-		this.trips = new DayTripList();
+		//this.trips = new DayTripList();
 		this.indivTrips = i;
+	}
+	
+	//returns all IndivDayTrips from a specific company
+	public Info[] searchByCompany(String comp){
+		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
+		int k = 0;
+		Vector<Info> output = new Vector<Info>();
+		for(int i = 0; i < a.length; i++){
+			DayTrip parent = a[i].getParent();
+			String c = parent.getCompany();
+			if(comp.equals(c)){
+				createInfo(a[i], output);
+				k++;
+			}
+		}
+		Info[] truOp = new Info[k];
+		return output.toArray(truOp);
 	}
 
 	//returns all IndivDayTrips that take place after pre and before post
 	public Info[] searchByTime(Date pre, Date post){
 		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
 		Vector<Info> output = new Vector<Info>();
+		int k = 0;
 		for(int i = 0; i < a.length; i++){
 			if((pre.compareTo(a[i].getStartTime())<0)&&(post.compareTo(a[i].getEndTime())>0)){
 				createInfo(a[i], output);
 			}
+			k++;
 		}
-		return (Info[]) output.toArray();
+		Info[] truOp = new Info[k];
+		return output.toArray(truOp);
 	}
 
 	//returns all IndivDayTrips that have seatsAvailable equal to or exceeding size
@@ -38,6 +58,22 @@ public class Searcher implements I_Searcher{
 		Vector<Info> output = new Vector<Info>();
 		for(int i = 0; i < a.length; i++){
 			if(size <= a[i].getNumSeatsAvail()){
+				createInfo(a[i], output);
+				k++;
+			}
+		}
+		Info[] truOp = new Info[k];
+		return output.toArray(truOp);
+	}
+	
+	//returns all IndivDayTrips that contain the search string in their parents description
+	public Info[] searchInDesc(String str){
+		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
+		int k = 0;
+		Vector<Info> output = new Vector<Info>();
+		for(int i = 0; i < a.length; i++){
+			DayTrip parent = a[i].getParent();
+			if(parent.getDesc().toLowerCase().contains(str.toLowerCase())){
 				createInfo(a[i], output);
 				k++;
 			}
@@ -115,8 +151,8 @@ public class Searcher implements I_Searcher{
 			for(int j = 0; j < b.length; j++){
 				if(a[k].equals(b[j])){
 					match[k] = true;
+					break;
 				}
-				break;
 			}
 			if(match[k] == false){
 				return false;
