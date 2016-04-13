@@ -1,6 +1,5 @@
 package classes;
 
-
 public class Booker {
 
 	public static void main(String[] args) {

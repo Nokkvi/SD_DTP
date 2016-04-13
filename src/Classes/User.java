@@ -1,20 +1,33 @@
 package classes;
 
-public class User {
+import interfaces.UserClass;
+
+public class User extends UserClass{
 	private Hotel hotel;
 	private String town;
-	private String name;
 	
 	public User(Hotel h, String s, String n){
-		this.hotel = h;
-		this.town = s;
-		this.name = n;
+		hotel = h;
+		town = s;
+		username = n;
 	}
 	
 	public static void main(String[] args) {
-		System.out.println("�etta er User Klasinn");
+		System.out.println("Þetta er User Klasinn");
 
 	}
+
+    @Override
+    public void setUserName(String newUserName) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void setEmail(String newEmail) {
+        // TODO Auto-generated method stub
+        
+    }
 	
 
 }
