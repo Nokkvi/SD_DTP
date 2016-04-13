@@ -2,10 +2,10 @@ package classes;
 import interfaces.UserClass;
 
 public class User extends UserClass{
-	private Hotel hotel;
+	private String hotel;
 	private String town;
 	
-	public User(Hotel h, String s, String n){
+	public User(String h, String s, String n){
 		hotel = h;
 		town = s;
 		username = n;
@@ -18,15 +18,31 @@ public class User extends UserClass{
 
     @Override
     public void setUserName(String newUserName) {
-        // TODO Auto-generated method stub
-        
+        this.username = newUserName;    
     }
 
     @Override
     public void setEmail(String newEmail) {
-        // TODO Auto-generated method stub
-        
+        this.email = newEmail;
+    }
+    
+    public String getHotel(){
+    	return this.hotel;
+    }
+    
+    public String getTown(){
+    	return this.town;
+    }
+    
+    public String getId(){
+    	return this.id;
     }
 	
-
+    public String getName(){
+    	return this.username;
+    }
+    
+    public String getEmail(){
+    	return this.email;
+    }
 }

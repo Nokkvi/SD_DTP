@@ -19,6 +19,23 @@ public class Searcher implements I_Searcher{
 		this.indivTrips = i;
 	}
 	
+	//returns all IndivDayTrips by their parents name
+	public Info[] searchByName(String name){
+		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
+		int k = 0;
+		Vector<Info> output = new Vector<Info>();
+		for(int i = 0; i < a.length; i++){
+			DayTrip parent = a[i].getParent();
+			String n = parent.getName();
+			if(n.toLowerCase().contains(name.toLowerCase())){
+				createInfo(a[i], output);
+				k++;
+			}
+		}
+		Info[] truOp = new Info[k];
+		return output.toArray(truOp);
+	}
+	
 	//returns all IndivDayTrips from a specific company
 	public Info[] searchByCompany(String comp){
 		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
