@@ -7,7 +7,7 @@ public class DayTrip {
 	private static String descr;
 	private RatingList ratings;
 	private String region;
-	private static String[] keyWords;
+	private String[] keyWords; //Af hverju var þetta static???
 	private IndivDayTripList indiv;
 	private int price;
 	private String company;
@@ -35,7 +35,7 @@ public class DayTrip {
 		return indiv;
 	}
 	
-	public static void addKeyWord(String keyWord){
+	public void addKeyWord(String keyWord){
 		int size = keyWords.length;
 		if(size < 15){
 			keyWords[size] = keyWord;
@@ -70,6 +70,10 @@ public class DayTrip {
 	
 	public Hotel[] getPickups(){
 		return this.pickupLocation;
+	}
+	
+	public String[] getKeywords(){
+		return this.keyWords;
 	}
 	
 	public static void main(String[] args) {
