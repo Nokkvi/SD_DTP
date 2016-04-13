@@ -1,10 +1,12 @@
 package classes;
-public class DayTrip {
+import interfaces.*;
+
+public class DayTrip implements I_DayTrip {
 	private String name;
 	private String category;
-	private Hotel[] pickupLocation;
+	private String[] pickupLocation;
 	private String address;
-	private static String descr;
+	private String descr;
 	private RatingList ratings;
 	private String region;
 	private String[] keyWords; //Af hverju var þetta static???
@@ -15,7 +17,7 @@ public class DayTrip {
 	public DayTrip(String name,
 			String category,
 			String comp,
-			Hotel[] pickupLocation,
+			String[] pickupLocation,
 			String address,
 			String region,
 			int pr){
@@ -35,14 +37,16 @@ public class DayTrip {
 		return indiv;
 	}
 	
-	public void addKeyWord(String keyWord){
+	public void addKeyword(String keyWord){
 		int size = keyWords.length;
 		if(size < 15){
 			keyWords[size] = keyWord;
+		}else{
+			System.out.println("Too many Keywords!");
 		}
 	}
 	
-	public static void editDesc(String newDescr){
+	public void editDesc(String newDescr){
 		descr = newDescr;
 	}
 	
@@ -68,7 +72,7 @@ public class DayTrip {
 		return this.category;
 	}
 	
-	public Hotel[] getPickups(){
+	public String[] getPickups(){
 		return this.pickupLocation;
 	}
 	
@@ -79,6 +83,11 @@ public class DayTrip {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("ï¿½etta er DayTrip Klasinn");
+	}
+	@Override
+	public IndivDayTrip selectIndiv(int i) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

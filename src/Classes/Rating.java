@@ -1,6 +1,8 @@
 package classes;
 import java.util.*;
-public class Rating {
+import interfaces.*;
+
+public class Rating implements I_Rating{
 
 	private DayTrip parent;
 	private Date dateTime;

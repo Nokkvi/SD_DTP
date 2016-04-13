@@ -47,15 +47,15 @@ public class Searcher implements I_Searcher{
 	}
 	
 	//returns all IndivDayTrips that have Hotel as pickup location
-	public Info[] searchByPickup(Hotel hotel){
+	public Info[] searchByPickup(String hotel){
 		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
 		Vector<Info> output = new Vector<Info>();
 		int k = 0;
 		for(int i = 0; i < a.length; i++){
 			DayTrip parent = a[i].getParent();
-			Hotel[] h = parent.getPickups();
+			String[] h = parent.getPickups();
 			for(int j = 0; j < h.length; j++){
-				if(hotel == h[i]){
+				if(hotel.equals(h[i])){
 					createInfo(a[i], output);
 					k++;
 				}

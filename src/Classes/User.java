@@ -1,6 +1,7 @@
 package classes;
+import interfaces.*;
 
-public class User {
+public class User implements I_User{
 	private Hotel hotel;
 	private String town;
 	private String name;
