@@ -1,5 +1,4 @@
 package classes;
-
 import interfaces.UserClass;
 
 public class User extends UserClass{
