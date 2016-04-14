@@ -13,51 +13,28 @@ public class Database implements I_Database {
 		    Statement stmt = null;
 		    try {
 		      Class.forName("org.sqlite.JDBC");
-		      c = DriverManager.getConnection("jdbc:sqlite:smjee.db");
+		      c = DriverManager.getConnection("jdbc:sqlite:Database.db");
+		      c.setAutoCommit(false);
 		      System.out.println("Opened database successfully");
 
 		      stmt = c.createStatement();
-		      String sql = "CREATE TABLE Daytrip " +
-		                   "(NAME CHAR(50) PRIMARY KEY  NOT NULL," +
-		                   " COMPANY        CHAR(50), " + 
-		                   " Rating           REAL, " + 
-		                   " ADDRESS        CHAR(50), " + 
-		                   " PRICE            INT,"+
-		                   " DESCR			CHAR(100)," + 
-		                   " KEYWORDS		CHAR(255)," +
-		                   " CATEGORY		CHAR(255))"; 
+		      /*
+		      String sql = "DELETE from indivDaytrips where ID=71;";
+		      stmt.executeUpdate(sql);
+		      */
+		      /*
+		      String sql = "INSERT INTO Daytrips(NAME,COMPANY,PRICE,DESCR,KEYWORDS,CATEGORY,HOTELPICKUP) " +
+		                   "VALUES('Essential Iceland', 'Reykjavik Excursions',42900, 'Enjoy an amazing tour through a landscape of extreme contrasts, full of history and geology.',"+
+		                   "'Thingvellir - Vikings - Kaldidalur - Langjokull - Lava field - Waterfalls - Hot Springs', 'Adventure', 'No Pickup');";
+		      stmt.executeUpdate(sql);
+		      */
+		      
+		      String sql = "INSERT INTO indivDaytrips(ID,STARTTIME,ENDTIME,DAYTRIP,NUMSEATSAVAIL) " +
+		    		  	   "VALUES(0101, '2016-04-29 09:00:00.000', '2016-04-29 19:00:00.000', 'Essential Iceland', 20);";
 		      stmt.executeUpdate(sql);
 		      
-		      sql = "CREATE TABLE indivDaytrip " +
-		    		   "(ID INT PRIMARY KEY  NOT NULL," +
-		    		   " STARTTIME        DATE, " + 
-	                   " ENDTIME          DATE, " + 
-	                   " DAYTRIP          CHAR(50), " + 
-	                   " NUMSEATSAVAIL    INT)"; 
-		      stmt.executeUpdate(sql);
-		      
-		      sql = "CREATE TABLE RatingList " +
-	                   "(NAME CHAR(50) PRIMARY KEY  NOT NULL," +
-	                   " RATETIME         DATE, " + 
-	                   " Rating           INT, " + 
-	                   " COMMENT        CHAR(255), " + 
-	                   " USERID 		  INT)";
-		      stmt.executeUpdate(sql);
-		      
-		      sql = "CREATE TABLE Users " +
-		    		   " (USERID INT PRIMARY KEY NOT NULL," +
-	                   " NAME         CHAR(50), " + 
-	                   " TOWN         CHAR(50), " + 
-	                   " HOTEL        CHAR(50))";
-		     
-		      stmt.executeUpdate(sql);
-		      sql = "CREATE TABLE Booking " +
-	                   " (USERID INT PRIMARY KEY NOT NULL," + 
-	                   " TRIPID          INT, " + 
-	                   " PARENT         CHAR(50), " + 
-	                   " SEATS    		 INT)";
-		      stmt.executeUpdate(sql);
 		      stmt.close();
+		      c.commit();
 		      c.close();
 		    } catch ( Exception e ) {
 		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
