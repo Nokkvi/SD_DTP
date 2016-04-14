@@ -1,10 +1,11 @@
 package classes;
+import java.util.Date;
 
 public class DayTripSearchCriteria {
 	private String name;
 	private String location;
-	private String startTime;
-	private String endTime;
+	private Date startTime;
+	private Date endTime;
 	private int[] priceRange;
 	private int numParticipants;
 	private String[] category;
@@ -17,11 +18,11 @@ public class DayTripSearchCriteria {
 		return this.location;
 	}
 
-	public String getStartTime(){
+	public Date getStartTime(){
 		return this.startTime;
 	}
 	
-	public String getEndTime(){
+	public Date getEndTime(){
 		return this.endTime;
 	}
 	
