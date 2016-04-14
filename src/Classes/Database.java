@@ -51,6 +51,17 @@ public class Database implements I_Database {
 		    System.out.println("Table created successfully");
 		  }
 	  
+	  public static void insert(String sql){
+		  try{
+		  stmt.executeUpdate(sql);
+		  } catch (SQLException e){
+			  System.out.println("SQL error");
+		  } catch (NullPointerException e){
+			  System.out.println("Database hasn't been opened");
+		  }
+		  
+	  }
+	  
 	  public static void connectToDatabase(){
 		    c = null;
 		    stmt = null;
@@ -62,6 +73,8 @@ public class Database implements I_Database {
 		    } catch ( Exception e ) {      
 		    }
 	  }
+	  
+	  
 	  public static void closeDatabase(){
 		  try {
 		  stmt.close();
