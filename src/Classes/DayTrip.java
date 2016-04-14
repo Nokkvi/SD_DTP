@@ -9,11 +9,13 @@ public class DayTrip implements I_DayTrip {
 	private String region;
 	private String[] keyWords; //Af hverju var þetta static???
 	private int price;
-	private String company;
+	private String[] company;
 	
 	public DayTrip(String name,
 			String category,
-			String comp,
+			String compN,
+			String compP,
+			String compE,
 			String[] pickupLocation,
 			String address,
 			String region,
@@ -25,7 +27,10 @@ public class DayTrip implements I_DayTrip {
 		descr = null;
 		keyWords = null;
 		this.price = pr;
-		this.company = comp;
+		this.company = new String[3];
+		this.company[0] = compN;
+		this.company[1] = compP;
+		this.company[2] = compE;
 	}
 	public static IndivDayTrip selectIndiv(IndivDayTrip indiv){
 		return indiv;
@@ -78,7 +83,7 @@ public class DayTrip implements I_DayTrip {
 		return this.keyWords;
 	}
 	
-	public String getCompany(){
+	public String[] getCompany(){
 		return this.company;
 	}
 	

@@ -153,7 +153,8 @@ public class Searcher implements I_Searcher{
 		Vector<IndivDayTrip> output = new Vector<IndivDayTrip>();
 		for(int i = 0; i < input.length; i++){
 			DayTrip parent = input[i].getParent();
-			String c = parent.getCompany();
+			String[] cArr = parent.getCompany();
+			String c = cArr[0];
 			if(c.toLowerCase().contains(comp.toLowerCase())){
 				output.add(input[i]);
 				k++;
@@ -198,6 +199,10 @@ public class Searcher implements I_Searcher{
 	//PUBLIC SINGLE CRITERIA SEARCH FUNCTIONS
 	
 	//returns all IndivDayTrips by their parents name
+	//Use:	Info[] I = searchByName(n);
+	//Pre:	n is a string
+	//Post:	I contains information extracted from all IndivDayTrips
+	//		whose parents name contains n.
 	public Info[] searchByName(String name){
 		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
 		a = searchByName(name, a);
@@ -205,6 +210,10 @@ public class Searcher implements I_Searcher{
 	}
 	
 	//returns all IndivDayTrips by their parents location
+	//Use:	Info[] I = searchByLoc(l);
+	//Pre:	l is a string
+	//Post:	I contains information extracted from all IndivDayTrips
+	//		whose parents location is l
 	public Info[] searchByLoc(String loc){
 		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
 		a = searchByLoc(loc, a);
@@ -212,6 +221,12 @@ public class Searcher implements I_Searcher{
 	}
 	
 	//returns all IndivDayTrips within a certain timeframe
+	//Use:	Info[] I = searchByTime(pre, post);
+	//Pre:	pre and post are Date objects. one, but not both
+	//		can have the value null. post contains a date later
+	//		than pre.
+	//Post:	I contains information extracted from all IndivDayTrips
+	//		within the timeframe between pre and post (inclusive)
 	public Info[] searchByTime(Date pre, Date post){
 		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
 		a = searchByTime(pre, post, a);
@@ -219,6 +234,10 @@ public class Searcher implements I_Searcher{
 	}
 	
 	//returns all IndivDayTrips with a parent within a certain pricerange
+	//Use:	Info[] I = searchByPrice(p);
+	//Pre:	p is a two value int array. p[1] > p[0].
+	//Post:	I contains information extracted from all IndivDayTrips
+	//		whose parents price lies within the two values in p (inclusive).
 	public Info[] searchByPrice(int[] price){
 		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
 		a = searchByPrice(price, a);
@@ -226,6 +245,10 @@ public class Searcher implements I_Searcher{
 	}
 	
 	//returns all IndivDayTrips that have a certain number of seats available
+	//Use:	Info[] I = searchBySize(int s);
+	//Pre:	s is an integer. s > 0
+	//Post:	I contains information extracted from all IndivDayTrips
+	//		with a number of available seats greater or equal to s.
 	public Info[] searchBySize(int size){
 		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
 		a = searchBySize(size, a);
@@ -233,6 +256,10 @@ public class Searcher implements I_Searcher{
 	}
 	
 	//returns all IndivDayTrips whose parents have at least one keyword in common with a giver array
+	//Use:	Info[] I = searchByKeywords(k);
+	//Pre:	k is a String array.
+	//Post:	I contains information extracted from all IndivDayTrips
+	//		whose parent has at least one keyword string in common with k
 	public Info[] searchByKeywords(String[] keywords){
 		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
 		a = searchByKeywords(keywords, a);
@@ -241,6 +268,10 @@ public class Searcher implements I_Searcher{
 	
 	//returns all IndivDayTrips from a specific company
 	//Not used in main search function
+	//Use:	Info[] I = searchByCompany(c);
+	//Pre:	c is a String
+	//Post:	I contains information extracted from all IndivDayTrips
+	//		whose parents company name contains the string c.
 	public Info[] searchByCompany(String comp){
 		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
 		a = searchByCompany(comp, a);
@@ -249,6 +280,10 @@ public class Searcher implements I_Searcher{
 	
 	//returns all IndivDayTrips that contain the search string in their parents description
 	//Not used in main search function
+	//Use:	Info[] I = searchInDesc(d);
+	//pre:	d is a String.
+	//Post:	I contains information extracted from all IndivDayTrips
+	//		whose parents description contains the string d.
 	public Info[] searchInDesc(String desc){
 		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
 		a = searchInDesc(desc, a);
@@ -257,16 +292,26 @@ public class Searcher implements I_Searcher{
 	
 	//returns all IndivDayTrips that have Hotel as pickup location
 	//Not used in main search function
+	//Use:	Info[] I = searchByPickup(h);
+	//Pre:	h is a String.
+	//Post:	I contains information extracted from all IndivDayTrips
+	//		whose parents pickup locations (hotel names) include h.
 	public Info[] searchByPickup(String hotel){
 		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
 		a = searchByPickup(hotel, a);
 		return createInfo(a);
 	}
 	
+	//Returns every IndivDayTrips in database.
+	//Use:	Info[] I = getAll();
+	//Pre:	N/A
+	//Post:	I contains information extracted from all IndivDayTrips in database
 	public Info[] getAll(){
 		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
 		return createInfo(a);
 	}
+	
+	//HELPER FUNCTIONS
 	
 	//Checks if array b contains at least one element of array a
 	private boolean matchOne(String[] a, String[] b){

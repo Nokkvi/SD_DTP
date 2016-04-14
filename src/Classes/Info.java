@@ -13,6 +13,7 @@ public class Info implements I_Info{
 	private int price;
 	private int  numSeatsAvail;
 	private String category;
+	private String[] dealerInfo;
 
 	public void setIndivId(int x){
 		this.IndivId = x;
@@ -46,6 +47,14 @@ public class Info implements I_Info{
 		this.category = x;
 	}
 	
+	public void setDealerInfo(String n, String p, String e){
+		String[] I = new String[3];
+		I[0] = n;
+		I[1] = p;
+		I[2] = e;
+		this.dealerInfo = I;
+	}
+	
 	public int getIndivId(){
 		return this.IndivId;
 	}
@@ -76,6 +85,10 @@ public class Info implements I_Info{
 	
 	public String getCategory(){
 		return this.category;
+	}
+	
+	public String[] getDealerInfo(){
+		return this.dealerInfo;
 	}
 	
 	public static void main(String[] args) {
