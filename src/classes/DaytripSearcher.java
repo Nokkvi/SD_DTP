@@ -45,7 +45,7 @@ public class DaytripSearcher /*implements I_Searcher*/{
 			output = searchByTime(tSTime, tETime, output);
 		}
 		if(tPRange != null) output = searchByPrice(tPRange, output);
-		if(tSeats != 0)	output = searchBySize(tSeats, output);
+		if(tSeats > 0)	output = searchBySize(tSeats, output);
 		if(tCat != null)	output = searchByKeywords(tCat, output);
 		
 		return createInfo(output);
