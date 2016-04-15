@@ -112,7 +112,7 @@ public class DaytripSearcher /*implements I_Searcher*/{
 		for(int i = 0; i < input.length; i++){
 			DayTrip parent = input[i].getParent();
 			int money = parent.getPrice();
-			if(price[0] >= money && price[1] <= money){
+			if((price[0] >= money || price[0] < 0) && (price[1] <= money || price[1] < 0)){
 				output.add(input[i]);
 				k++;
 			}
