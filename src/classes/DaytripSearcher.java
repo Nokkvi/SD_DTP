@@ -162,8 +162,7 @@ public class DaytripSearcher implements I_Searcher{
 		Vector<IndivDayTrip> output = new Vector<IndivDayTrip>();
 		for(int i = 0; i < input.length; i++){
 			DayTrip parent = input[i].getParent();
-			String[] cArr = parent.getCompany();
-			String c = cArr[0];
+			String c = parent.getCompany();
 			if(c.toLowerCase().contains(comp.toLowerCase())){
 				output.add(input[i]);
 				k++;
@@ -369,8 +368,10 @@ public class DaytripSearcher implements I_Searcher{
 		int tPrice = parent.getPrice();
 		int tSeats = child.getNumSeatsAvail();
 		String tCat = parent.getCategory();
-		String[] tDeal = parent.getCompany();
-		return new DaytripExtend(tSTime, tETime, tLoc, tPrice, tSeats, tCat, tDeal, tName, tId);
+		String tDeal = parent.getCompany();
+		CompanyList CL = new CompanyList();
+		String[] dealInfo = CL.getCompanyDetails(tDeal);
+		return new DaytripExtend(tSTime, tETime, tLoc, tPrice, tSeats, tCat, dealInfo, tName, tId);
 	}
 	
 	//TODO remove
