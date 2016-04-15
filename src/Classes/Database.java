@@ -51,6 +51,15 @@ public class Database implements I_Database {
         System.out.println("Table created successfully");
     }
     
+    public static ResultSet execute(String sql){
+        try {
+            return stmt.executeQuery(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
     public static ResultSet getTable(String table){
         String sql = "SELECT * FROM "+table;
         try {

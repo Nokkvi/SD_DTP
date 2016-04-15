@@ -7,19 +7,20 @@ public class DayTrip implements I_DayTrip {
 	private String[] pickupLocation;
 	private String descr;
 	private String region;
-	private String[] keyWords; //Af hverju var þetta static???
+	private String[] keyWords; //Af hverju var ï¿½etta static???
 	private int price;
-	private String[] company;
+	private String company;
+	private double rating;
 	
 	public DayTrip(String name,
 			String category,
-			String compN,
-			String compP,
-			String compE,
+			String company,
 			String[] pickupLocation,
-			String address,
+			String[] keywords,
 			String region,
-			int pr){
+			String descr,
+			int pr,
+			double rating){
 		this.name = name;
 		this.category = category;
 		this.pickupLocation = pickupLocation;
@@ -27,10 +28,8 @@ public class DayTrip implements I_DayTrip {
 		descr = null;
 		keyWords = null;
 		this.price = pr;
-		this.company = new String[3];
-		this.company[0] = compN;
-		this.company[1] = compP;
-		this.company[2] = compE;
+		this.company = company;
+		this.rating = rating;
 	}
 	public static IndivDayTrip selectIndiv(IndivDayTrip indiv){
 		return indiv;
@@ -83,8 +82,12 @@ public class DayTrip implements I_DayTrip {
 		return this.keyWords;
 	}
 	
-	public String[] getCompany(){
+	public String getCompany(){
 		return this.company;
+	}
+	
+	public double getRating(){
+	    return this.rating;
 	}
 	
 	public static void main(String[] args) {

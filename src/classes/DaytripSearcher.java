@@ -162,8 +162,7 @@ public class DaytripSearcher implements I_Searcher{
 		Vector<IndivDayTrip> output = new Vector<IndivDayTrip>();
 		for(int i = 0; i < input.length; i++){
 			DayTrip parent = input[i].getParent();
-			String[] cArr = parent.getCompany();
-			String c = cArr[0];
+			String c = parent.getCompany();
 			if(c.toLowerCase().contains(comp.toLowerCase())){
 				output.add(input[i]);
 				k++;
@@ -351,20 +350,28 @@ public class DaytripSearcher implements I_Searcher{
 	//Post:	I is an array of Info objects containing data 
 	//		extracted from the contents of child and their
 	//		parents.
-	protected DaytripExtend[] createInfo(IndivDayTrip[] child){
+	protected static DaytripExtend[] createInfo(IndivDayTrip[] child){
 		DaytripExtend[] temp = new DaytripExtend[child.length];
 		for(int i = 0; i < child.length; i++){
-			DayTrip parent = child[i].getParent();
-			temp[i].setIndivId(child[i].getId());
-			temp[i].setName(parent.getName());
-			temp[i].setStartTime(child[i].getStartTime());
-			temp[i].setEndTime(child[i].getEndTime());
-			temp[i].setLocation(parent.getRegion());
-			temp[i].setPrice(parent.getPrice());
-			temp[i].setNumSeatsAvail(child[i].getNumSeatsAvail());
-			temp[i].setCategory(parent.getCategory());
+			temp[i] = createInfo(child[i]);
 		}
 		return temp;
+	}
+	
+	protected static DaytripExtend createInfo(IndivDayTrip child){
+		DayTrip parent = child.getParent();
+		int tId = child.getId();
+		String tName = parent.getName();
+		Date tSTime = child.getStartTime();
+		Date tETime = child.getEndTime();
+		String tLoc = parent.getRegion();
+		int tPrice = parent.getPrice();
+		int tSeats = child.getNumSeatsAvail();
+		String tCat = parent.getCategory();
+		String tDeal = parent.getCompany();
+		CompanyList CL = new CompanyList();
+		String[] dealInfo = CL.getCompanyDetails(tDeal);
+		return new DaytripExtend(tSTime, tETime, tLoc, tPrice, tSeats, tCat, dealInfo, tName, tId);
 	}
 	
 	//TODO remove
