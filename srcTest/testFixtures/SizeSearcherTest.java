@@ -13,9 +13,9 @@ import org.junit.Test;
 import classes.*;
 
 public class SizeSearcherTest {
-	private Searcher searchG;
-	private Searcher searchL;
-	private Searcher searchE;
+	private DaytripSearcher searchG;
+	private DaytripSearcher searchL;
+	private DaytripSearcher searchE;
 	
 
 	@Before
@@ -24,9 +24,9 @@ public class SizeSearcherTest {
 		I_IndivDayTripList tLar = new M_IndivDayTripList_SizeL();
 		I_IndivDayTripList tEmp = new M_IndivDayTripList_SizeE();
 		
-		searchG = new Searcher(tGen);
-		searchL = new Searcher(tLar);
-		searchE = new Searcher(tEmp);
+		searchG = new DaytripSearcher(tGen);
+		searchL = new DaytripSearcher(tLar);
+		searchE = new DaytripSearcher(tEmp);
 	}
 	
 	@Test

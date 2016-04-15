@@ -3,30 +3,39 @@ package classes;
 import java.util.*;
 import interfaces.*;
 
-public class Searcher implements I_Searcher{
+public class DaytripSearcher implements I_Searcher{
 	
 	private I_IndivDayTripList indivTrips;
 
-	public Searcher(I_IndivDayTripList i){
-		this.indivTrips = i;
+	//Use:	DaytripSearcher d = new DaytripSearcher();
+	//Pre:	N/A
+	//Post:	constructs a new DaytripSearcher
+	public DaytripSearcher(){
+		this.indivTrips = new IndivDayTripList();
 	}
 	
 	/*	MAIN SEARCH_BY_CRITERIA FUNCTION
-	 * 	returns day trip information based on input from a given DayTripSearchCriteria object.
-	 * 	The input object contains the following criteria:
-	 * 	String name:			Name of parent daytrip
-	 * 	String location:		Location of parent daytrip
-	 * 	String startTime:		Minimum start time of daytrip
-	 * 	String endTime:			Maximum end time of daytrip
-	 * 	int[] priceRange:		The range within which the price of the daytrip must fall,
+	 * 	returns day trip information based on input from a given DayTripSearchCriteria object.	 
+	 * 	The DayTripSearchCriteria object contains the following criteria:
+	 * 	String name:			Name of parent daytrip, if null search by name will not be perfomed
+	 * 	String location:		Location of parent daytrip, if null search by location will not be perfomed
+	 * 	Date startTime:			Minimum start time of daytrip, null for unbounded
+	 * 	Date endTime:			Maximum end time of daytrip, later than startTime, null for unbounded
+	 *							If both startTime and endTime are null, search by date will not be performed
+	 * 	int[] priceRange:		The range within which the price of the daytrip ust fall,
 	 * 							priceRange[0] for lower bound, priceRange[1] for upper bound
-	 * 	int numParticipants:	The minimum seats left of daytrip
-	 * 	String Category:		Category of parent daytrip
-	 *	
-	 *	If any of these criteria have the value null, they will be skipped. In case of startTime, endTime
-	 *	and priceRange this can be used to implement boundless search in one direction.
+	 *							priceRange[1] should be greater than priceRange[0]. If either is negative, search
+	 *							is unbound in that direction. If both are negative search will not be performed 
+	 *							based on price.
+	 * 	int numParticipants:	The minimum seats left of daytrip, if negative search by size will not be perfomed
+	 * 	String[] Category:		Categories of parent daytrip, if null search by category will not be perfomed
+	 *
+	 *	Use:	DaytripExtend d = DaytripSearcher.search(c)
+	 *	Pre:	c is a DayTripSearchCriteria object as described above
+	 *	Post:	d contains information extracted from IndivDayTrips matching the criteria in c.
+	 *
 	*/
-	public Info[] search(DayTripSearchCriteria crit){
+	public DaytripExtend[] search(DayTripSearchCriteria crit){
 		IndivDayTrip[] output = indivTrips.pullIndivDayTrip();
 		
 		String tName = crit.getName();
@@ -194,73 +203,85 @@ public class Searcher implements I_Searcher{
 		return output.toArray(truOp);
 	}
 	
+	protected IndivDayTrip searchByID(int ID){
+		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
+		IndivDayTrip trip = null;
+		for(int i = 0; i < a.length; i++){
+			if(a[i].getId() == ID){
+				trip = a[i];
+			}
+		}
+		return trip;
+		
+	}
+	
 	
 	
 	//PUBLIC SINGLE CRITERIA SEARCH FUNCTIONS
 	
 	//returns all IndivDayTrips by their parents name
-	//Use:	Info[] I = searchByName(n);
+	//Use:	DaytripExtend[] I = searchByName(n);
 	//Pre:	n is a string
 	//Post:	I contains information extracted from all IndivDayTrips
 	//		whose parents name contains n.
-	public Info[] searchByName(String name){
+	public DaytripExtend[] searchByName(String name){
 		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
 		a = searchByName(name, a);
 		return createInfo(a);
 	}
 	
 	//returns all IndivDayTrips by their parents location
-	//Use:	Info[] I = searchByLoc(l);
+	//Use:	DaytripExtend[] I = searchByLoc(l);
 	//Pre:	l is a string
 	//Post:	I contains information extracted from all IndivDayTrips
 	//		whose parents location is l
-	public Info[] searchByLoc(String loc){
+	public DaytripExtend[] searchByLoc(String loc){
 		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
 		a = searchByLoc(loc, a);
 		return createInfo(a);
 	}
 	
 	//returns all IndivDayTrips within a certain timeframe
-	//Use:	Info[] I = searchByTime(pre, post);
+	//Use:	DaytripExtend[] I = searchByTime(pre, post);
 	//Pre:	pre and post are Date objects. one, but not both
 	//		can have the value null. post contains a date later
 	//		than pre.
 	//Post:	I contains information extracted from all IndivDayTrips
 	//		within the timeframe between pre and post (inclusive)
-	public Info[] searchByTime(Date pre, Date post){
+	public DaytripExtend[] searchByTime(Date pre, Date post){
 		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
 		a = searchByTime(pre, post, a);
 		return createInfo(a);
 	}
 	
 	//returns all IndivDayTrips with a parent within a certain pricerange
-	//Use:	Info[] I = searchByPrice(p);
+	//Use:	DaytripExtend[] I = searchByPrice(p);
 	//Pre:	p is a two value int array. p[1] > p[0].
 	//Post:	I contains information extracted from all IndivDayTrips
 	//		whose parents price lies within the two values in p (inclusive).
-	public Info[] searchByPrice(int[] price){
+	public DaytripExtend[] searchByPrice(int[] price){
 		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
 		a = searchByPrice(price, a);
 		return createInfo(a);
 	}
 	
 	//returns all IndivDayTrips that have a certain number of seats available
-	//Use:	Info[] I = searchBySize(int s);
+	//Use:	DaytripExtend[] I = searchBySize(int s);
 	//Pre:	s is an integer. s > 0
 	//Post:	I contains information extracted from all IndivDayTrips
 	//		with a number of available seats greater or equal to s.
-	public Info[] searchBySize(int size){
+	public DaytripExtend[] searchBySize(int size){
 		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
 		a = searchBySize(size, a);
 		return createInfo(a);
 	}
 	
 	//returns all IndivDayTrips whose parents have at least one keyword in common with a giver array
-	//Use:	Info[] I = searchByKeywords(k);
+	//Use:	DaytripExtend[] I = searchByKeywords(k);
 	//Pre:	k is a String array.
 	//Post:	I contains information extracted from all IndivDayTrips
 	//		whose parent has at least one keyword string in common with k
-	public Info[] searchByKeywords(String[] keywords){
+	public DaytripExtend[] searchByKeywords(String[] keywords){
 		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
 		a = searchByKeywords(keywords, a);
 		return createInfo(a);
@@ -268,11 +289,11 @@ public class Searcher implements I_Searcher{
 	
 	//returns all IndivDayTrips from a specific company
 	//Not used in main search function
-	//Use:	Info[] I = searchByCompany(c);
+	//Use:	DaytripExtend[] I = searchByCompany(c);
 	//Pre:	c is a String
 	//Post:	I contains information extracted from all IndivDayTrips
 	//		whose parents company name contains the string c.
-	public Info[] searchByCompany(String comp){
+	public DaytripExtend[] searchByCompany(String comp){
 		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
 		a = searchByCompany(comp, a);
 		return createInfo(a);
@@ -280,11 +301,11 @@ public class Searcher implements I_Searcher{
 	
 	//returns all IndivDayTrips that contain the search string in their parents description
 	//Not used in main search function
-	//Use:	Info[] I = searchInDesc(d);
+	//Use:	DaytripExtend[] I = searchInDesc(d);
 	//pre:	d is a String.
 	//Post:	I contains information extracted from all IndivDayTrips
 	//		whose parents description contains the string d.
-	public Info[] searchInDesc(String desc){
+	public DaytripExtend[] searchInDesc(String desc){
 		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
 		a = searchInDesc(desc, a);
 		return createInfo(a);
@@ -292,21 +313,21 @@ public class Searcher implements I_Searcher{
 	
 	//returns all IndivDayTrips that have Hotel as pickup location
 	//Not used in main search function
-	//Use:	Info[] I = searchByPickup(h);
+	//Use:	DaytripExtend[] I = searchByPickup(h);
 	//Pre:	h is a String.
 	//Post:	I contains information extracted from all IndivDayTrips
 	//		whose parents pickup locations (hotel names) include h.
-	public Info[] searchByPickup(String hotel){
+	public DaytripExtend[] searchByPickup(String hotel){
 		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
 		a = searchByPickup(hotel, a);
 		return createInfo(a);
 	}
 	
 	//Returns every IndivDayTrips in database.
-	//Use:	Info[] I = getAll();
+	//Use:	DaytripExtend[] I = getAll();
 	//Pre:	N/A
 	//Post:	I contains information extracted from all IndivDayTrips in database
-	public Info[] getAll(){
+	public DaytripExtend[] getAll(){
 		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
 		return createInfo(a);
 	}
@@ -325,13 +346,13 @@ public class Searcher implements I_Searcher{
 		return false;
 	}
 	
-	//Use:	Info[] I = createInfo(child)
+	//Use:	DaytripExtend[] I = createInfo(child)
 	//Pre:	child is an array of IndivDayTrips
 	//Post:	I is an array of Info objects containing data 
 	//		extracted from the contents of child and their
 	//		parents.
-	private Info[] createInfo(IndivDayTrip[] child){
-		Info[] temp = new Info[child.length];
+	protected DaytripExtend[] createInfo(IndivDayTrip[] child){
+		DaytripExtend[] temp = new DaytripExtend[child.length];
 		for(int i = 0; i < child.length; i++){
 			DayTrip parent = child[i].getParent();
 			temp[i].setIndivId(child[i].getId());

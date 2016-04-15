@@ -16,7 +16,7 @@ public class BookInfoList implements I_BookInfoList {
 	}
 
 	@Override
-	public BookingInfo pullBooking() {
+	public BookingInfo[] pullBooking() {
 		// TODO Auto-generated method stub
 		return null;
 	}

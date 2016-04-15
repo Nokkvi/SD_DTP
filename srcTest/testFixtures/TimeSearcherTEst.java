@@ -13,13 +13,13 @@ import org.junit.Test;
 import classes.*;
 
 public class TimeSearcherTEst {
-	private Searcher search;
+	private DaytripSearcher search;
 
 
 	@Before
 	public void setUp() throws Exception {
 		I_IndivDayTripList i = new M_IndivDayTripList_Time();
-		search = new Searcher(i);
+		search = new DaytripSearcher(i);
 	}
 
 	@Test

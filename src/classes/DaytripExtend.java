@@ -1,20 +1,26 @@
 package classes;
+import metaSearchEngine.program.DaytripAbstract;
 import interfaces.*;
 import java.util.Date;
 
 
-public class Info implements I_Info{
+public class DaytripExtend extends DaytripAbstract{
 	
 	private int IndivId;
 	private String name;
 	private Date startTime;
 	private Date endTime;
-	private String location;
+	private String loc;
 	private int price;
-	private int  numSeatsAvail;
+	private int  numParticipantsAvail;
 	private String category;
 	private String[] dealerInfo;
 
+	public DaytripExtend(Date startTime, Date endTime, String loc, int price, int numParticipants, String category, String[] dealerInfo /*, ...*/) {
+		super(startTime, endTime, loc, price, numParticipants, category, dealerInfo);
+		// ...
+	}
+	
 	public void setIndivId(int x){
 		this.IndivId = x;
 	}
@@ -32,7 +38,7 @@ public class Info implements I_Info{
 	}
 	
 	public void setLocation(String x){
-		this.location = x;
+		this.loc = x;
 	}
 	
 	public void setPrice(int x){
@@ -40,7 +46,7 @@ public class Info implements I_Info{
 	}
 	
 	public void setNumSeatsAvail(int x){
-		this.numSeatsAvail = x;
+		this.numParticipantsAvail = x;
 	}
 	
 	public void setCategory(String x){
@@ -72,7 +78,7 @@ public class Info implements I_Info{
 	}
 	
 	public String getLocation(){
-		return this.location;
+		return this.loc;
 	}
 	
 	public int getPrice(){
@@ -80,7 +86,7 @@ public class Info implements I_Info{
 	}
 	
 	public int getNumSeatsAvail(){
-		return this.numSeatsAvail;
+		return this.numParticipantsAvail;
 	}
 	
 	public String getCategory(){
@@ -92,7 +98,7 @@ public class Info implements I_Info{
 	}
 	
 	public static void main(String[] args) {
-		System.out.println("�etta er Info Klasinn");
+		System.out.println("");
 
 	}
 
