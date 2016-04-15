@@ -2,6 +2,7 @@ package classes;
 
 import interfaces.*;
 import java.sql.*;
+import java.util.*;
 
 
 
@@ -51,7 +52,8 @@ public class DayTripList implements I_DayTripList {
     @Override
     public DayTrip[] pullDayTrip() {
         //TODO Klára
-        //ResultSet rs = Database.search("SELECT * FROM Daytrips");
+        ResultSet rs = Database.getTable("Daytrips");
+        List<DayTrip> result = new ArrayList<DayTrip>();
         return null;
     }
 

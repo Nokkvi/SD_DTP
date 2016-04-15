@@ -4,6 +4,7 @@ import interfaces.I_Database;
 
 //STEP 1. Import required packages
 import java.sql.*;
+import java.util.*;
 
 public class Database implements I_Database {
     static Connection c;
@@ -48,6 +49,16 @@ public class Database implements I_Database {
             System.exit(0);
         }
         System.out.println("Table created successfully");
+    }
+    
+    public static ResultSet getTable(String table){
+        String sql = "SELECT * FROM "+table;
+        try {
+            return stmt.executeQuery(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
     
     public static boolean matchDB(String name, String table, String column){
