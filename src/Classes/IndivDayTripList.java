@@ -1,9 +1,9 @@
 package classes;
-import interfaces.*;
+//import interfaces.*;
 
 
 
-public class IndivDayTripList implements I_IndivDayTripList{
+public class IndivDayTripList /*implements I_IndivDayTripList*/{
 
 	
 	public static void main(String[] args) {
@@ -11,20 +11,20 @@ public class IndivDayTripList implements I_IndivDayTripList{
 
 	}
 
-	@Override
-	public void addIndivDayTrip(IndivDayTrip d) {
+	//@Override
+	public static void addIndivDayTrip(IndivDayTrip d) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public IndivDayTrip[] pullIndivDayTrip() {
+	//@Override
+	public static IndivDayTrip[] pullIndivDayTrip() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public void removeIndivDayTrip(IndivDayTrip d) {
+	//@Override
+	public static void removeIndivDayTrip(IndivDayTrip d) {
 		// TODO Auto-generated method stub
 		
 	}

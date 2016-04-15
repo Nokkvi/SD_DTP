@@ -1,18 +1,11 @@
 package classes;
 
 import java.util.*;
-import interfaces.*;
+//import interfaces.*;
+import metaSearchEngine.program.*;
 
-public class DaytripSearcher implements I_Searcher{
+public class DaytripSearcher /*implements I_Searcher*/{
 	
-	private I_IndivDayTripList indivTrips;
-
-	//Use:	DaytripSearcher d = new DaytripSearcher();
-	//Pre:	N/A
-	//Post:	constructs a new DaytripSearcher
-	public DaytripSearcher(){
-		this.indivTrips = new IndivDayTripList();
-	}
 	
 	/*	MAIN SEARCH_BY_CRITERIA FUNCTION
 	 * 	returns day trip information based on input from a given DayTripSearchCriteria object.	 
@@ -35,8 +28,8 @@ public class DaytripSearcher implements I_Searcher{
 	 *	Post:	d contains information extracted from IndivDayTrips matching the criteria in c.
 	 *
 	*/
-	public DaytripExtend[] search(DayTripSearchCriteria crit){
-		IndivDayTrip[] output = indivTrips.pullIndivDayTrip();
+	public static ArrayList<DaytripAbstract> search(DayTripSearchCriteria crit){
+		IndivDayTrip[] output = IndivDayTripList.pullIndivDayTrip();
 		
 		String tName = crit.getName();
 		String tLoc = crit.getLocation();
@@ -46,14 +39,14 @@ public class DaytripSearcher implements I_Searcher{
 		int tSeats = crit.getNumParticipants();
 		String[] tCat = crit.getCategory();
 		
-		if(tName != null)	output = this.searchByName(tName, output);
-		if(tLoc != null)	output = this.searchByLoc(tLoc, output);
+		if(tName != null)	output = DaytripSearcher.searchByName(tName, output);
+		if(tLoc != null)	output = searchByLoc(tLoc, output);
 		if(tSTime != null && tETime != null){
-			output = this.searchByTime(tSTime, tETime, output);
+			output = searchByTime(tSTime, tETime, output);
 		}
-		if(tPRange != null) output = this.searchByPrice(tPRange, output);
-		if(tSeats != 0)	output = this.searchBySize(tSeats, output);
-		if(tCat != null)	output = this.searchByKeywords(tCat, output);
+		if(tPRange != null) output = searchByPrice(tPRange, output);
+		if(tSeats != 0)	output = searchBySize(tSeats, output);
+		if(tCat != null)	output = searchByKeywords(tCat, output);
 		
 		return createInfo(output);
 	}
@@ -66,7 +59,7 @@ public class DaytripSearcher implements I_Searcher{
 	//		in is the IndivDayTrip array that the function searches through
 	//Post:	output is an array of IndivDayTrips in in whose parent's name contain
 	//		string n.
-	private IndivDayTrip[] searchByName(String name, IndivDayTrip[] input){
+	private static IndivDayTrip[] searchByName(String name, IndivDayTrip[] input){
 		int k = 0;
 		Vector<IndivDayTrip> output = new Vector<IndivDayTrip>();
 		for(int i = 0; i < input.length; i++){
@@ -81,7 +74,7 @@ public class DaytripSearcher implements I_Searcher{
 		return output.toArray(truOp);
 	}
 	
-	private IndivDayTrip[] searchByLoc(String loc, IndivDayTrip[] input){
+	private static IndivDayTrip[] searchByLoc(String loc, IndivDayTrip[] input){
 		int k = 0;
 		Vector<IndivDayTrip> output = new Vector<IndivDayTrip>();
 		for(int i = 0; i < input.length; i++){
@@ -96,7 +89,7 @@ public class DaytripSearcher implements I_Searcher{
 		return output.toArray(truOp);
 	}
 	
-	private IndivDayTrip[] searchByTime(Date startTime, Date endTime, IndivDayTrip[] input){
+	private static IndivDayTrip[] searchByTime(Date startTime, Date endTime, IndivDayTrip[] input){
 		int k = 0;
 		Vector<IndivDayTrip> output = new Vector<IndivDayTrip>();
 		for(int i = 0; i < input.length; i++){
@@ -113,7 +106,7 @@ public class DaytripSearcher implements I_Searcher{
 		return output.toArray(truOp);
 	}
 	
-	private IndivDayTrip[] searchByPrice(int price[], IndivDayTrip[] input){
+	private static IndivDayTrip[] searchByPrice(int price[], IndivDayTrip[] input){
 		int k = 0;
 		Vector<IndivDayTrip> output = new Vector<IndivDayTrip>();
 		for(int i = 0; i < input.length; i++){
@@ -128,7 +121,7 @@ public class DaytripSearcher implements I_Searcher{
 		return output.toArray(truOp);		
 	}
 	
-	private IndivDayTrip[] searchBySize(int size, IndivDayTrip[] input){
+	private static IndivDayTrip[] searchBySize(int size, IndivDayTrip[] input){
 		int k = 0;
 		Vector<IndivDayTrip> output = new Vector<IndivDayTrip>();
 		for(int i = 0; i < input.length; i++){
@@ -142,13 +135,13 @@ public class DaytripSearcher implements I_Searcher{
 		return output.toArray(truOp);	
 	}
 	
-	private IndivDayTrip[] searchByKeywords(String[] keywords, IndivDayTrip[] input){
+	private static IndivDayTrip[] searchByKeywords(String[] keywords, IndivDayTrip[] input){
 		int k = 0;
 		Vector<IndivDayTrip> output = new Vector<IndivDayTrip>();
 		for(int i = 0; i < input.length; i++){
 			DayTrip parent = input[i].getParent();
 			String[] kWords = parent.getKeywords();
-			if(this.matchOne(keywords, kWords)){
+			if(matchOne(keywords, kWords)){
 				output.add(input[i]);
 				k++;
 			}
@@ -157,7 +150,7 @@ public class DaytripSearcher implements I_Searcher{
 		return output.toArray(truOp);			
 	}
 	
-	private IndivDayTrip[] searchByCompany(String comp, IndivDayTrip[] input){
+	private static IndivDayTrip[] searchByCompany(String comp, IndivDayTrip[] input){
 		int k = 0;
 		Vector<IndivDayTrip> output = new Vector<IndivDayTrip>();
 		for(int i = 0; i < input.length; i++){
@@ -172,7 +165,7 @@ public class DaytripSearcher implements I_Searcher{
 		return output.toArray(truOp);
 	}
 	
-	private IndivDayTrip[] searchInDesc(String desc, IndivDayTrip[] input){
+	private static IndivDayTrip[] searchInDesc(String desc, IndivDayTrip[] input){
 		int k = 0;
 		Vector<IndivDayTrip> output = new Vector<IndivDayTrip>();
 		for(int i = 0; i < input.length; i++){
@@ -186,7 +179,7 @@ public class DaytripSearcher implements I_Searcher{
 		return output.toArray(truOp);
 	}
 	
-	private IndivDayTrip[] searchByPickup(String hotel, IndivDayTrip[] input){
+	private static IndivDayTrip[] searchByPickup(String hotel, IndivDayTrip[] input){
 		int k = 0;
 		Vector<IndivDayTrip> output = new Vector<IndivDayTrip>();
 		for(int i = 0; i < input.length; i++){
@@ -202,8 +195,8 @@ public class DaytripSearcher implements I_Searcher{
 		return output.toArray(truOp);
 	}
 	
-	protected IndivDayTrip searchByID(int ID){
-		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
+	protected static IndivDayTrip searchByID(int ID){
+		IndivDayTrip[] a = IndivDayTripList.pullIndivDayTrip();
 		IndivDayTrip trip = null;
 		for(int i = 0; i < a.length; i++){
 			if(a[i].getId() == ID){
@@ -223,8 +216,8 @@ public class DaytripSearcher implements I_Searcher{
 	//Pre:	n is a string
 	//Post:	I contains information extracted from all IndivDayTrips
 	//		whose parents name contains n.
-	public DaytripExtend[] searchByName(String name){
-		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
+	public static ArrayList<DaytripAbstract> searchByName(String name){
+		IndivDayTrip[] a = IndivDayTripList.pullIndivDayTrip();
 		a = searchByName(name, a);
 		return createInfo(a);
 	}
@@ -234,8 +227,8 @@ public class DaytripSearcher implements I_Searcher{
 	//Pre:	l is a string
 	//Post:	I contains information extracted from all IndivDayTrips
 	//		whose parents location is l
-	public DaytripExtend[] searchByLoc(String loc){
-		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
+	public static ArrayList<DaytripAbstract> searchByLoc(String loc){
+		IndivDayTrip[] a = IndivDayTripList.pullIndivDayTrip();
 		a = searchByLoc(loc, a);
 		return createInfo(a);
 	}
@@ -247,8 +240,8 @@ public class DaytripSearcher implements I_Searcher{
 	//		than pre.
 	//Post:	I contains information extracted from all IndivDayTrips
 	//		within the timeframe between pre and post (inclusive)
-	public DaytripExtend[] searchByTime(Date pre, Date post){
-		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
+	public static ArrayList<DaytripAbstract> searchByTime(Date pre, Date post){
+		IndivDayTrip[] a = IndivDayTripList.pullIndivDayTrip();
 		a = searchByTime(pre, post, a);
 		return createInfo(a);
 	}
@@ -258,8 +251,8 @@ public class DaytripSearcher implements I_Searcher{
 	//Pre:	p is a two value int array. p[1] > p[0].
 	//Post:	I contains information extracted from all IndivDayTrips
 	//		whose parents price lies within the two values in p (inclusive).
-	public DaytripExtend[] searchByPrice(int[] price){
-		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
+	public static ArrayList<DaytripAbstract> searchByPrice(int[] price){
+		IndivDayTrip[] a = IndivDayTripList.pullIndivDayTrip();
 		a = searchByPrice(price, a);
 		return createInfo(a);
 	}
@@ -269,8 +262,8 @@ public class DaytripSearcher implements I_Searcher{
 	//Pre:	s is an integer. s > 0
 	//Post:	I contains information extracted from all IndivDayTrips
 	//		with a number of available seats greater or equal to s.
-	public DaytripExtend[] searchBySize(int size){
-		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
+	public static ArrayList<DaytripAbstract> searchBySize(int size){
+		IndivDayTrip[] a = IndivDayTripList.pullIndivDayTrip();
 		a = searchBySize(size, a);
 		return createInfo(a);
 	}
@@ -280,8 +273,8 @@ public class DaytripSearcher implements I_Searcher{
 	//Pre:	k is a String array.
 	//Post:	I contains information extracted from all IndivDayTrips
 	//		whose parent has at least one keyword string in common with k
-	public DaytripExtend[] searchByKeywords(String[] keywords){
-		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
+	public static ArrayList<DaytripAbstract> searchByKeywords(String[] keywords){
+		IndivDayTrip[] a = IndivDayTripList.pullIndivDayTrip();
 		a = searchByKeywords(keywords, a);
 		return createInfo(a);
 	}
@@ -292,8 +285,8 @@ public class DaytripSearcher implements I_Searcher{
 	//Pre:	c is a String
 	//Post:	I contains information extracted from all IndivDayTrips
 	//		whose parents company name contains the string c.
-	public DaytripExtend[] searchByCompany(String comp){
-		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
+	public static ArrayList<DaytripAbstract> searchByCompany(String comp){
+		IndivDayTrip[] a = IndivDayTripList.pullIndivDayTrip();
 		a = searchByCompany(comp, a);
 		return createInfo(a);
 	}
@@ -304,8 +297,8 @@ public class DaytripSearcher implements I_Searcher{
 	//pre:	d is a String.
 	//Post:	I contains information extracted from all IndivDayTrips
 	//		whose parents description contains the string d.
-	public DaytripExtend[] searchInDesc(String desc){
-		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
+	public static ArrayList<DaytripAbstract> searchInDesc(String desc){
+		IndivDayTrip[] a = IndivDayTripList.pullIndivDayTrip();
 		a = searchInDesc(desc, a);
 		return createInfo(a);
 	}
@@ -316,8 +309,8 @@ public class DaytripSearcher implements I_Searcher{
 	//Pre:	h is a String.
 	//Post:	I contains information extracted from all IndivDayTrips
 	//		whose parents pickup locations (hotel names) include h.
-	public DaytripExtend[] searchByPickup(String hotel){
-		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
+	public static ArrayList<DaytripAbstract> searchByPickup(String hotel){
+		IndivDayTrip[] a = IndivDayTripList.pullIndivDayTrip();
 		a = searchByPickup(hotel, a);
 		return createInfo(a);
 	}
@@ -326,15 +319,15 @@ public class DaytripSearcher implements I_Searcher{
 	//Use:	DaytripExtend[] I = getAll();
 	//Pre:	N/A
 	//Post:	I contains information extracted from all IndivDayTrips in database
-	public DaytripExtend[] getAll(){
-		IndivDayTrip[] a = indivTrips.pullIndivDayTrip();
+	public static ArrayList<DaytripAbstract> getAll(){
+		IndivDayTrip[] a = IndivDayTripList.pullIndivDayTrip();
 		return createInfo(a);
 	}
 	
 	//HELPER FUNCTIONS
 	
 	//Checks if array b contains at least one element of array a
-	private boolean matchOne(String[] a, String[] b){
+	private static boolean matchOne(String[] a, String[] b){
 		for(int i = 0; i < a.length; i++){
 			for(int j = 0; j < b.length; j++){
 				if(a[i].equals(b[j])){
@@ -350,10 +343,10 @@ public class DaytripSearcher implements I_Searcher{
 	//Post:	I is an array of Info objects containing data 
 	//		extracted from the contents of child and their
 	//		parents.
-	protected static DaytripExtend[] createInfo(IndivDayTrip[] child){
-		DaytripExtend[] temp = new DaytripExtend[child.length];
+	protected static ArrayList<DaytripAbstract> createInfo(IndivDayTrip[] child){
+		ArrayList<DaytripAbstract> temp = new ArrayList<DaytripAbstract>();
 		for(int i = 0; i < child.length; i++){
-			temp[i] = createInfo(child[i]);
+			temp.add(createInfo(child[i]));
 		}
 		return temp;
 	}
@@ -369,8 +362,7 @@ public class DaytripSearcher implements I_Searcher{
 		int tSeats = child.getNumSeatsAvail();
 		String tCat = parent.getCategory();
 		String tDeal = parent.getCompany();
-		CompanyList CL = new CompanyList();
-		String[] dealInfo = CL.getCompanyDetails(tDeal);
+		String[] dealInfo = CompanyList.getCompanyDetails(tDeal);
 		return new DaytripExtend(tSTime, tETime, tLoc, tPrice, tSeats, tCat, dealInfo, tName, tId);
 	}
 	
