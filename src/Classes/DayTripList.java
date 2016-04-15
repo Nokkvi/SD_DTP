@@ -59,7 +59,8 @@ public class DayTripList implements I_DayTripList {
                 String[] keywords = rs.getString(6).split(" - ");
                 String category = rs.getString(7);
                 String[] pickup = rs.getString(8).split(", ");
-                result.add(new DayTrip(name, category, company, pickup, keywords, "", description, price, rating));
+                String location = rs.getString(9);
+                result.add(new DayTrip(name, category, company, pickup, keywords, location, description, price, rating));
                 return (DayTrip[]) result.toArray();
             }
         } catch (SQLException e) {
