@@ -36,9 +36,9 @@ public class DayTripList implements I_DayTripList {
 			}
 		}
 		
-		String inject = "INSERT INTO DAYTRIPS(NAME,COMPANY,PRICE,DESCR,KEYWORDS,CATEGORY,HOTELPICKUP) "
+		String inject = "INSERT INTO DAYTRIPS(NAME,COMPANY,PRICE,DESCR,KEYWORDS,CATEGORY,HOTELPICKUP,LOCATION) "
 						+ "VALUES('" + name + "', '" + comp + "', '" + price + "', '" + desc + "', '"
-						+ sKeyw + "', '" + cat + "', '" + sPickup + "');";
+						+ sKeyw + "', '" + cat + "', '" + sPickup + "', '" + loc + "');";
 		
     	Database.insert(inject);
     }
