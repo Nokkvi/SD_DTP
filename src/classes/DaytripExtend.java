@@ -1,12 +1,11 @@
 package classes;
 import metaSearchEngine.program.DaytripAbstract;
-import interfaces.*;
 import java.util.Date;
 
 
 public class DaytripExtend extends DaytripAbstract{
 	
-	private int IndivId;
+	private int indivId;
 	private String name;
 	private Date startTime;
 	private Date endTime;
@@ -17,53 +16,16 @@ public class DaytripExtend extends DaytripAbstract{
 	private String[] dealerInfo;
 
 	public DaytripExtend(Date startTime, Date endTime, String loc, int price, int numParticipants, String category, String[] dealerInfo, String tripname, int id) {
-		super(startTime, endTime, loc, price, numParticipants, category, dealerInfo);
-		this.IndivId = id;
-		this.name = tripname;
+		super(startTime, endTime, loc, price, numParticipants, category, dealerInfo, tripname);
+		this.indivId = id;
 	}
 	
 	public void setIndivId(int x){
-		this.IndivId = x;
+		this.indivId = x;
 	}
-	
-	public void setName(String x){
-		this.name = x;
-	}
-	
-	public void setStartTime(Date x){
-		this.startTime = x;
-	}
-	
-	public void setEndTime(Date x){
-		this.endTime = x;
-	}
-	
-	public void setLocation(String x){
-		this.loc = x;
-	}
-	
-	public void setPrice(int x){
-		this.price = x;
-	}
-	
-	public void setNumSeatsAvail(int x){
-		this.numParticipantsAvail = x;
-	}
-	
-	public void setCategory(String x){
-		this.category = x;
-	}
-	
-	public void setDealerInfo(String n, String p, String e){
-		String[] I = new String[3];
-		I[0] = n;
-		I[1] = p;
-		I[2] = e;
-		this.dealerInfo = I;
-	}
-	
-	public int getIndivId(){
-		return this.IndivId;
+
+	public int getIndivID(){
+		return this.indivId;
 	}
 	
 	public String getName(){
@@ -86,7 +48,7 @@ public class DaytripExtend extends DaytripAbstract{
 		return this.price;
 	}
 	
-	public int getNumSeatsAvail(){
+	public int getNumParticipantsAvail(){
 		return this.numParticipantsAvail;
 	}
 	

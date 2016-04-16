@@ -1,16 +1,16 @@
 package classes;
 import java.util.*;
+import metaSearchEngine.program.*;
 
 public class DaytripBooker {
 	
 	//Use:	bookTrip(u, t, s)
-	//Pre:	u is a User object, t is a DaytripExtend object, s is a positive integer
+	//Pre:	u is a User object, t is a DaytripAbstract object, s is a positive integer
 	//Post:	Adds a new booking into the booking database.
-	public static void bookTrip(User user, DaytripExtend tripInfo, int seats){
+	public static void bookTrip(User user, DaytripAbstract tripInfo, int seats){
 		BookInfoList b = new BookInfoList();
-		DaytripSearcher s = new DaytripSearcher();
-		int ID = tripInfo.getIndivId();
-		IndivDayTrip trip = s.searchByID(ID);
+		int ID = tripInfo.getIndivID();
+		IndivDayTrip trip = DaytripSearcher.searchByID(ID);
 		BookingInfo booking = new BookingInfo(user, trip, seats);
 		b.addBooking(booking);
 	}
