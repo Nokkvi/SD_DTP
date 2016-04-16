@@ -21,9 +21,9 @@ public class DaytripSearcher /*implements I_Searcher*/{
 	 *							is unbound in that direction. If both are negative search will not be performed 
 	 *							based on price.
 	 * 	int numParticipants:	The minimum seats left of daytrip, if negative search by size will not be perfomed
-	 * 	String[] Category:		Categories of parent daytrip, if null search by category will not be perfomed
+	 * 	String[] Category:		Category of parent daytrip, if null search by category will not be perfomed
 	 *
-	 *	Use:	DaytripExtend d = DaytripSearcher.search(c)
+	 *	Use:	ArrayList<DaytripAbstract> d = DaytripSearcher.search(c)
 	 *	Pre:	c is a DayTripSearchCriteria object as described above
 	 *	Post:	d contains information extracted from IndivDayTrips matching the criteria in c.
 	 *
@@ -46,7 +46,7 @@ public class DaytripSearcher /*implements I_Searcher*/{
 		}
 		if(tPRange != null) output = searchByPrice(tPRange, output);
 		if(tSeats > 0)	output = searchBySize(tSeats, output);
-		if(tCat != null)	output = searchByKeywords(tCat, output);
+		if(tCat != null)	output = searchByCategory(tCat, output);
 		
 		return createInfo(output);
 	}
@@ -135,19 +135,22 @@ public class DaytripSearcher /*implements I_Searcher*/{
 		return output.toArray(truOp);	
 	}
 	
-	private static IndivDayTrip[] searchByKeywords(String[] keywords, IndivDayTrip[] input){
+	private static IndivDayTrip[] searchByCategory(String[] cat, IndivDayTrip[] input){
 		int k = 0;
 		Vector<IndivDayTrip> output = new Vector<IndivDayTrip>();
 		for(int i = 0; i < input.length; i++){
 			DayTrip parent = input[i].getParent();
-			String[] kWords = parent.getKeywords();
-			if(matchOne(keywords, kWords)){
-				output.add(input[i]);
-				k++;
+			String c = parent.getCategory();
+			for(int j = 0; j < cat.length; j++){
+				if(c.toLowerCase().contains(cat[j].toLowerCase())){
+					output.add(input[i]);
+					k++;
+					break;
+				}
 			}
 		}
 		IndivDayTrip[] truOp = new IndivDayTrip[k];
-		return output.toArray(truOp);			
+		return output.toArray(truOp);
 	}
 	
 	private static IndivDayTrip[] searchByCompany(String comp, IndivDayTrip[] input){
@@ -163,6 +166,21 @@ public class DaytripSearcher /*implements I_Searcher*/{
 		}
 		IndivDayTrip[] truOp = new IndivDayTrip[k];
 		return output.toArray(truOp);
+	}
+	
+	private static IndivDayTrip[] searchByKeywords(String[] keywords, IndivDayTrip[] input){
+		int k = 0;
+		Vector<IndivDayTrip> output = new Vector<IndivDayTrip>();
+		for(int i = 0; i < input.length; i++){
+			DayTrip parent = input[i].getParent();
+			String[] kWords = parent.getKeywords();
+			if(matchOne(keywords, kWords)){
+				output.add(input[i]);
+				k++;
+			}
+		}
+		IndivDayTrip[] truOp = new IndivDayTrip[k];
+		return output.toArray(truOp);			
 	}
 	
 	private static IndivDayTrip[] searchInDesc(String desc, IndivDayTrip[] input){
@@ -212,7 +230,7 @@ public class DaytripSearcher /*implements I_Searcher*/{
 	//PUBLIC SINGLE CRITERIA SEARCH FUNCTIONS
 	
 	//returns all IndivDayTrips by their parents name
-	//Use:	DaytripExtend[] I = searchByName(n);
+	//Use:	ArrayList<DaytripAbstract> I = searchByName(n);
 	//Pre:	n is a string
 	//Post:	I contains information extracted from all IndivDayTrips
 	//		whose parents name contains n.
@@ -223,7 +241,7 @@ public class DaytripSearcher /*implements I_Searcher*/{
 	}
 	
 	//returns all IndivDayTrips by their parents location
-	//Use:	DaytripExtend[] I = searchByLoc(l);
+	//Use:	ArrayList<DaytripAbstract> I = searchByLoc(l);
 	//Pre:	l is a string
 	//Post:	I contains information extracted from all IndivDayTrips
 	//		whose parents location is l
@@ -234,7 +252,7 @@ public class DaytripSearcher /*implements I_Searcher*/{
 	}
 	
 	//returns all IndivDayTrips within a certain timeframe
-	//Use:	DaytripExtend[] I = searchByTime(pre, post);
+	//Use:	ArrayList<DaytripAbstract> I = searchByTime(pre, post);
 	//Pre:	pre and post are Date objects. one, but not both
 	//		can have the value null. post contains a date later
 	//		than pre.
@@ -247,7 +265,7 @@ public class DaytripSearcher /*implements I_Searcher*/{
 	}
 	
 	//returns all IndivDayTrips with a parent within a certain pricerange
-	//Use:	DaytripExtend[] I = searchByPrice(p);
+	//Use:	ArrayList<DaytripAbstract> I = searchByPrice(p);
 	//Pre:	p is a two value int array. p[1] > p[0].
 	//Post:	I contains information extracted from all IndivDayTrips
 	//		whose parents price lies within the two values in p (inclusive).
@@ -258,7 +276,7 @@ public class DaytripSearcher /*implements I_Searcher*/{
 	}
 	
 	//returns all IndivDayTrips that have a certain number of seats available
-	//Use:	DaytripExtend[] I = searchBySize(int s);
+	//Use:	ArrayList<DaytripAbstract> I = searchBySize(int s);
 	//Pre:	s is an integer. s > 0
 	//Post:	I contains information extracted from all IndivDayTrips
 	//		with a number of available seats greater or equal to s.
@@ -268,20 +286,20 @@ public class DaytripSearcher /*implements I_Searcher*/{
 		return createInfo(a);
 	}
 	
-	//returns all IndivDayTrips whose parents have at least one keyword in common with a giver array
-	//Use:	DaytripExtend[] I = searchByKeywords(k);
-	//Pre:	k is a String array.
+	//returns all IndivDayTrips whose category matches the search strings
+	//Use:	ArrayList<DaytripAbstract> I = searchByCategory(String[] c);
+	//Pre:	c is a String.
 	//Post:	I contains information extracted from all IndivDayTrips
-	//		whose parent has at least one keyword string in common with k
-	public static ArrayList<DaytripAbstract> searchByKeywords(String[] keywords){
+	//		whose category name contains at least one  of the strings in c.
+	public static ArrayList<DaytripAbstract> searchByCategory(String[] cat){
 		IndivDayTrip[] a = IndivDayTripList.pullIndivDayTrip();
-		a = searchByKeywords(keywords, a);
+		a = searchByCategory(cat, a);
 		return createInfo(a);
 	}
 	
 	//returns all IndivDayTrips from a specific company
 	//Not used in main search function
-	//Use:	DaytripExtend[] I = searchByCompany(c);
+	//Use:	ArrayList<DaytripAbstract> I = searchByCompany(c);
 	//Pre:	c is a String
 	//Post:	I contains information extracted from all IndivDayTrips
 	//		whose parents company name contains the string c.
@@ -293,7 +311,7 @@ public class DaytripSearcher /*implements I_Searcher*/{
 	
 	//returns all IndivDayTrips that contain the search string in their parents description
 	//Not used in main search function
-	//Use:	DaytripExtend[] I = searchInDesc(d);
+	//Use:	ArrayList<DaytripAbstract> I = searchInDesc(d);
 	//pre:	d is a String.
 	//Post:	I contains information extracted from all IndivDayTrips
 	//		whose parents description contains the string d.
@@ -305,7 +323,7 @@ public class DaytripSearcher /*implements I_Searcher*/{
 	
 	//returns all IndivDayTrips that have Hotel as pickup location
 	//Not used in main search function
-	//Use:	DaytripExtend[] I = searchByPickup(h);
+	//Use:	ArrayList<DaytripAbstract> I = searchByPickup(h);
 	//Pre:	h is a String.
 	//Post:	I contains information extracted from all IndivDayTrips
 	//		whose parents pickup locations (hotel names) include h.
@@ -315,8 +333,20 @@ public class DaytripSearcher /*implements I_Searcher*/{
 		return createInfo(a);
 	}
 	
+	//returns all IndivDayTrips whose parents have at least one keyword in common with a given array
+	//Not used in main search function
+	//Use:	ArrayList<DaytripAbstract> I = searchByKeywords(k);
+	//Pre:	k is a String array.
+	//Post:	I contains information extracted from all IndivDayTrips
+	//		whose parent has at least one keyword string in common with k
+	public static ArrayList<DaytripAbstract> searchByKeywords(String[] keywords){
+		IndivDayTrip[] a = IndivDayTripList.pullIndivDayTrip();
+		a = searchByKeywords(keywords, a);
+		return createInfo(a);
+	}	
+	
 	//Returns every IndivDayTrips in database.
-	//Use:	DaytripExtend[] I = getAll();
+	//Use:	ArrayList<DaytripAbstract> I = getAll();
 	//Pre:	N/A
 	//Post:	I contains information extracted from all IndivDayTrips in database
 	public static ArrayList<DaytripAbstract> getAll(){
