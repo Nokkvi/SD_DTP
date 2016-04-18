@@ -10,6 +10,7 @@ public class Database implements I_Database {
     static Connection c;
     static Statement stmt;
 
+    /*
     public static void main( String args[] )
     {
         c = null;
@@ -21,11 +22,11 @@ public class Database implements I_Database {
             System.out.println("Opened database successfully");
 
             stmt = c.createStatement();
-            /*
+            
 		      String sql = "INSERT INTO COMPANY(NAME,SIMANUMER,EMAIL)" +
 		    		  	   "VALUES('Reykjavik Excursions', '5805400','main@re.is')";
 		      stmt.executeUpdate(sql);
-             */
+            
 
             String sql = "INSERT INTO Daytrips(NAME,COMPANY,PRICE,DESCR,KEYWORDS,CATEGORY,HOTELPICKUP) " +
                     "VALUES('Snorkeling in Silfra', 'Reykjavik Excursions',46900, 'Snorkeling in Iceland is an activity that everyone who has learnt to swim can enjoy.',"+
@@ -51,9 +52,12 @@ public class Database implements I_Database {
         System.out.println("Table created successfully");
     }
     
+    */
+    
     public static ResultSet execute(String sql){
         try {
-            return stmt.executeQuery(sql);
+            PreparedStatement ps = c.prepareStatement(sql);
+            return ps.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -63,7 +67,8 @@ public class Database implements I_Database {
     public static ResultSet getTable(String table){
         String sql = "SELECT * FROM "+table+";";
         try {
-            return stmt.executeQuery(sql);
+            PreparedStatement ps = c.prepareStatement(sql);
+            return ps.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -111,6 +116,7 @@ public class Database implements I_Database {
             stmt = c.createStatement();
             System.out.println("Opened database successfully");		
         } catch ( Exception e ) {      
+            e.printStackTrace();
         }
     }
 

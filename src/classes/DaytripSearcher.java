@@ -237,7 +237,6 @@ public class DaytripSearcher /*implements I_Searcher*/{
 	//		whose parents name contains n.
 	public static ArrayList<DaytripAbstract> searchByName(String name){
 		IndivDayTrip[] a = IndivDayTripList.pullIndivDayTrip();
-		System.out.println(a.length);
 		a = searchByName(name, a);
 		return createInfo(a);
 	}

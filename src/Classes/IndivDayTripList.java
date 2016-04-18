@@ -54,20 +54,22 @@ public class IndivDayTripList /*implements I_IndivDayTripList*/{
           
             	
             	ResultSet rsp = Database.execute("SELECT * FROM Daytrips WHERE name='"+parent+"';");
-            	rsp.next();
-            	String name = rsp.getString(1);
-            	String company = rsp.getString(2);
-            	double rating = rsp.getFloat(3);
-                int price = rsp.getInt(4);
-                String description = rsp.getString(5);
-                String[] keywords = rsp.getString(6).split(" - ");
-                String category = rsp.getString(7);
-                String[] pickup = rsp.getString(8).split(", ");
-                String location = rsp.getString(9);
-                
-                DayTrip parent_o = new DayTrip(name, category, company, pickup, keywords, location, description, price, rating);
-                result.add(new IndivDayTrip(id, Sd, Ed, numSeats, parent_o));
-                k++;
+            	if (rsp.next()){
+                    String name = rsp.getString(1);
+                    String company = rsp.getString(2);
+                    double rating = rsp.getFloat(3);
+                    int price = rsp.getInt(4);
+                    String description = rsp.getString(5);
+                    String[] keywords = rsp.getString(6).split(" - ");
+                    String category = rsp.getString(7);
+                    String[] pickup = rsp.getString(8).split(", ");
+                    String location = rsp.getString(9);
+                    DayTrip parent_o = new DayTrip(name, category, company, pickup, keywords, location, description, price, rating);
+                    result.add(new IndivDayTrip(id, Sd, Ed, numSeats, parent_o));
+                    k++;
+            	} else {
+            	    System.out.println("Parent "+parent+" not found!!!?!!!?!!");
+            	}
             }
             IndivDayTrip[] truOp = new IndivDayTrip[k];
             return result.toArray(truOp);

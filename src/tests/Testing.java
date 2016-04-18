@@ -1,4 +1,4 @@
-package testFixtures;
+package tests;
 import java.util.*;
 import metaSearchEngine.program.*;
 import classes.*;
