@@ -4,9 +4,9 @@ import java.util.*;
 
 public class UserList {
     
-    public static void addUser(String ID, String h, String s, String n, String mail){
+    public static void addUser(String ID, String hotel, String location, String name, String mail){
         Database.connectToDatabase();
-        String sql ="Insert into users values("+ID+",'"+n+"','"+s+"','"+h+"','"+mail+"');";
+        String sql ="Insert into users values("+ID+",'"+name+"','"+location+"','"+hotel+"','"+mail+"');";
         Database.insert(sql);
         Database.closeDatabase();
     }
