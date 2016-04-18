@@ -100,6 +100,7 @@ public class Database implements I_Database {
         try{
             stmt.executeUpdate(sql);
         } catch (SQLException e){
+            e.printStackTrace();
             System.out.println("SQL error");
         } catch (NullPointerException e){
             System.out.println("Database hasn't been opened");

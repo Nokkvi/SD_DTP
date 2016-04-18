@@ -394,7 +394,6 @@ public class DaytripSearcher /*implements I_Searcher*/{
 		String tCat = parent.getCategory();
 		String tDeal = parent.getCompany();
 		String[] dealInfo = CompanyList.getCompanyDetails(tDeal);
-		System.out.println(tName + " " + tPrice);
 		return new DaytripExtend(tSTime, tETime, tLoc, tPrice, tSeats, tCat, dealInfo, tName, tId);
 	}
 	
