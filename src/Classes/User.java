@@ -5,10 +5,12 @@ public class User extends UserClass{
 	private String hotel;
 	private String town;
 	
-	public User(String h, String s, String n){
+	public User(String ID, String h, String s, String n, String mail){
 		hotel = h;
 		town = s;
 		username = n;
+		email = mail;
+		id = ID;
 	}
 	
 	public static void main(String[] args) {
