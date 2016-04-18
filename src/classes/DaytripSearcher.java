@@ -29,6 +29,7 @@ public class DaytripSearcher /*implements I_Searcher*/{
 	 *
 	*/
 	public static ArrayList<DaytripAbstract> search(DayTripSearchCriteria crit){
+		Database.connectToDatabase();
 		IndivDayTrip[] output = IndivDayTripList.pullIndivDayTrip();
 		
 		String tName = crit.getName();
@@ -47,7 +48,7 @@ public class DaytripSearcher /*implements I_Searcher*/{
 		if(tPRange != null) output = searchByPrice(tPRange, output);
 		if(tSeats > 0)	output = searchBySize(tSeats, output);
 		if(tCat != null)	output = searchByCategory(tCat, output);
-		
+		Database.closeDatabase();
 		return createInfo(output);
 	}
 	
@@ -236,6 +237,7 @@ public class DaytripSearcher /*implements I_Searcher*/{
 	//		whose parents name contains n.
 	public static ArrayList<DaytripAbstract> searchByName(String name){
 		IndivDayTrip[] a = IndivDayTripList.pullIndivDayTrip();
+		System.out.println(a.length);
 		a = searchByName(name, a);
 		return createInfo(a);
 	}
@@ -381,7 +383,7 @@ public class DaytripSearcher /*implements I_Searcher*/{
 		return temp;
 	}
 	
-	protected static DaytripExtend createInfo(IndivDayTrip child){
+	protected static DaytripAbstract createInfo(IndivDayTrip child){
 		DayTrip parent = child.getParent();
 		int tId = child.getId();
 		String tName = parent.getName();
@@ -393,6 +395,7 @@ public class DaytripSearcher /*implements I_Searcher*/{
 		String tCat = parent.getCategory();
 		String tDeal = parent.getCompany();
 		String[] dealInfo = CompanyList.getCompanyDetails(tDeal);
+		System.out.println(tName + " " + tPrice);
 		return new DaytripExtend(tSTime, tETime, tLoc, tPrice, tSeats, tCat, dealInfo, tName, tId);
 	}
 	

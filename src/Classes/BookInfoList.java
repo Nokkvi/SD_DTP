@@ -39,6 +39,7 @@ public class BookInfoList implements I_BookInfoList {
         ResultSet rs = Database.getTable("booking");
         List<BookingInfo> result = new ArrayList<BookingInfo>();
         try {
+        	int k = 0;
             while (rs.next()){
             	int uID = rs.getInt(1);
             	int tID = rs.getInt(2);
@@ -84,14 +85,15 @@ public class BookInfoList implements I_BookInfoList {
             	rst = Database.execute("UPDATE indivDaytrips SET NUMSEATSAVAIL="+newSeats+" WHERE ID="+tID);
             	
                 result.add(new BookingInfo(uInput, tInput, sumS));
-                return (BookingInfo[]) result.toArray();
+                k++;
             }
+            BookingInfo[] truOP = new BookingInfo[k];
+            return result.toArray(truOP);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
             return null;
         }
-        return null;
 	}
 
 	@Override

@@ -24,9 +24,9 @@ public class M_IndivDayTripList_Size implements I_IndivDayTripList{
 	public IndivDayTrip[] pullIndivDayTrip() {
 		
 		//A mock array of unimplemented Hotels
-		Hotel hothells[] = new Hotel[3];
+		String hothells[] = new String[3];
 		for(int i = 0; i < 3; i++){
-			hothells[i] = new Hotel();
+			hothells[i] = "Hotel " + i;
 		}
 		
 		//DayTrip objects to use as parents

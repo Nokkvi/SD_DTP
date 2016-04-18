@@ -49,6 +49,7 @@ public class DayTripList implements I_DayTripList {
         ResultSet rs = Database.getTable("Daytrips");
         List<DayTrip> result = new ArrayList<DayTrip>();
         try {
+        	int k = 0;
             while (rs.next()){
                 String name = rs.getString(1);
                 String company = rs.getString(2);
@@ -61,14 +62,15 @@ public class DayTripList implements I_DayTripList {
                 String[] pickup = rs.getString(8).split(", ");
                 String location = rs.getString(9);
                 result.add(new DayTrip(name, category, company, pickup, keywords, location, description, price, rating));
-                return (DayTrip[]) result.toArray();
+                k++;
             }
+            DayTrip[] truOP = new DayTrip[k];
+            return result.toArray(truOP);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
             return null;
         }
-        return null;
     }
 
     @Override
@@ -77,7 +79,6 @@ public class DayTripList implements I_DayTripList {
     	String name = d.getName();
     	String cond = "name = "+name;
     	ResultSet rs = Database.deleteEntry("Daytrips", cond);
-        
     }
 
 

@@ -61,7 +61,7 @@ public class Database implements I_Database {
     }
     
     public static ResultSet getTable(String table){
-        String sql = "SELECT * FROM "+table;
+        String sql = "SELECT * FROM "+table+";";
         try {
             return stmt.executeQuery(sql);
         } catch (SQLException e) {
@@ -81,7 +81,7 @@ public class Database implements I_Database {
     }
     
     public static boolean matchDB(String name, String table, String column){
-        String sql = "SELECT " +column+" FROM "+table+" WHERE "+column+"="+name;
+        String sql = "SELECT " +column+" FROM "+table+" WHERE "+column+"="+name+";";
         try {
             ResultSet rs = stmt.executeQuery(sql);
             return rs.next();
@@ -108,6 +108,7 @@ public class Database implements I_Database {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:Database.db");
             c.setAutoCommit(false);
+            stmt = c.createStatement();
             System.out.println("Opened database successfully");		
         } catch ( Exception e ) {      
         }
@@ -121,8 +122,8 @@ public class Database implements I_Database {
             c.close();
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            System.out.println("Database closed");
+            System.out.println("ERROR");
         }
-        System.out.println("Table created successfully"); 
+        System.out.println("Database closed"); 
     }
 }

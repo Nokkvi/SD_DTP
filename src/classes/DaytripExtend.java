@@ -18,6 +18,14 @@ public class DaytripExtend extends DaytripAbstract{
 	public DaytripExtend(Date startTime, Date endTime, String loc, int price, int numParticipants, String category, String[] dealerInfo, String tripname, int id) {
 		super(startTime, endTime, loc, price, numParticipants, category, dealerInfo, tripname);
 		this.indivId = id;
+		this.name = tripname;
+		this.price = price;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.loc = loc;
+		this.numParticipantsAvail = numParticipants;
+		this.category = category;
+		this.dealerInfo = dealerInfo;
 	}
 	
 	public void setIndivId(int x){

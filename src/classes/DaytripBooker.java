@@ -37,7 +37,7 @@ public class DaytripBooker {
 		BookingOutput[] ouP = new BookingOutput[k];
 		for(int j = 0; j < k; j++){
 			IndivDayTrip d = truIp[j].getTrip();
-			DaytripExtend I = DaytripSearcher.createInfo(d);
+			DaytripAbstract I = DaytripSearcher.createInfo(d);
 			User u = truIp[j].getUser();
 			int s = truIp[j].getSeats();
 			ouP[j] = new BookingOutput(I, u, s);
