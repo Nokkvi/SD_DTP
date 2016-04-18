@@ -70,6 +70,16 @@ public class Database implements I_Database {
         }
     }
     
+    public static ResultSet deleteEntry(String table, String cond){
+    	String sql = "DELETE FROM "+table+" WHERE "+cond+";";
+    	try {
+    		return stmt.executeQuery(sql);
+    	}catch (SQLException e) {
+    		e.printStackTrace();
+    		return null;
+    	}
+    }
+    
     public static boolean matchDB(String name, String table, String column){
         String sql = "SELECT " +column+" FROM "+table+" WHERE "+column+"="+name;
         try {

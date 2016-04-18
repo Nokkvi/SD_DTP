@@ -74,6 +74,9 @@ public class DayTripList implements I_DayTripList {
     @Override
     public void removeDayTrip(DayTrip d) {
         // TODO Auto-generated method stub
+    	String name = d.getName();
+    	String cond = "name = "+name;
+    	ResultSet rs = Database.deleteEntry("Daytrips", cond);
         
     }
 
