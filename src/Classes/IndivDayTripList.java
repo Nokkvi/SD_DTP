@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-public class IndivDayTripList /*implements I_IndivDayTripList*/{
+public class IndivDayTripList{
 	
 	public static void main(String[] args) {
 		System.out.println("�etta er IndivDayTripList Klasinn");
@@ -17,7 +17,7 @@ public class IndivDayTripList /*implements I_IndivDayTripList*/{
 
 	//@Override
 	public static void addIndivDayTrip(IndivDayTrip d) {
-		// TODO Auto-generated method stub
+		Database.connectToDatabase();
 		int id = d.getId();
 		Date startD = d.getStartTime();
 		Date endD = d.getEndTime();
@@ -33,13 +33,13 @@ public class IndivDayTripList /*implements I_IndivDayTripList*/{
 						+ numSeatsAvail + "');";
 		
     	Database.insert(inject);
-		
+		Database.closeDatabase();
 	}
 
 	//@Override
     @SuppressWarnings("deprecation")
 	public static IndivDayTrip[] pullIndivDayTrip() {
-        //TODO Klára
+        Database.connectToDatabase();
         ResultSet rs = Database.getTable("indivDaytrips");
         List<IndivDayTrip> result = new ArrayList<IndivDayTrip>();
         try {
@@ -72,20 +72,23 @@ public class IndivDayTripList /*implements I_IndivDayTripList*/{
             	}
             }
             IndivDayTrip[] truOp = new IndivDayTrip[k];
+            Database.closeDatabase();
             return result.toArray(truOp);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            Database.closeDatabase();
             return null;
         }
     }
 
 	//@Override
 	public static void removeIndivDayTrip(IndivDayTrip d) {
-		// TODO Auto-generated method stub
+		Database.connectToDatabase();
 		int id = d.getId();
 		String cond = "id = "+id;
 		ResultSet rs = Database.deleteEntry("indivDaytrips", cond);
+		Database.closeDatabase();
 	}
 
 }
