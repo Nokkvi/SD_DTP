@@ -1,4 +1,4 @@
-package metaSearchEngine.program;
+package interfaces;
 
 // Instances of classes that extend this interface are
 // User objects that contain information on customers seeking

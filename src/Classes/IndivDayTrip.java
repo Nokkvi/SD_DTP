@@ -1,8 +1,9 @@
 package classes;
+import interfaces.*;
 
 import java.util.Date;
 
-public class IndivDayTrip{
+public class IndivDayTrip implements I_IndivDayTrip{
 	private int id;
 	private Date startTime;
 	private Date endTime;

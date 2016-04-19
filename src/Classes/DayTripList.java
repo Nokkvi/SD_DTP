@@ -6,10 +6,10 @@ import java.util.*;
 
 
 
-public class DayTripList{
+public class DayTripList implements I_DayTripList {
 	
+    @Override
     public void addDayTrip(DayTrip d) {
-    	Database.connectToDatabase();
 		String name = d.getName();
 		String cat = d.getCategory();
 		String[] pickup = d.getPickups();
@@ -41,12 +41,11 @@ public class DayTripList{
 						+ sKeyw + "', '" + cat + "', '" + sPickup + "', '" + loc + "');";
 		
     	Database.insert(inject);
-    	Database.closeDatabase();
     }
 
-
+    @Override
     public DayTrip[] pullDayTrip() {
-        Database.connectToDatabase();
+        //TODO Klára
         ResultSet rs = Database.getTable("Daytrips");
         List<DayTrip> result = new ArrayList<DayTrip>();
         try {
@@ -66,22 +65,20 @@ public class DayTripList{
                 k++;
             }
             DayTrip[] truOP = new DayTrip[k];
-            Database.closeDatabase();;
             return result.toArray(truOP);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-            Database.closeDatabase();
             return null;
         }
     }
 
+    @Override
     public void removeDayTrip(DayTrip d) {
-        Database.connectToDatabase();
+        // TODO Auto-generated method stub
     	String name = d.getName();
     	String cond = "name = "+name;
     	ResultSet rs = Database.deleteEntry("Daytrips", cond);
-    	Database.closeDatabase();
     }
 
 

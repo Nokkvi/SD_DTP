@@ -1,7 +1,8 @@
 package classes;
 import java.util.*;
+import interfaces.*;
 
-public class Rating{
+public class Rating implements I_Rating{
 
 	private DayTrip trip;
 	private Date dateTime;

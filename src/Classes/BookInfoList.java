@@ -8,23 +8,19 @@ import java.util.List;
 import interfaces.*;
 
 
-public class BookInfoList{
+public class BookInfoList implements I_BookInfoList {
 
 	public static void main(String[] args) {
 		System.out.println("ï¿½etta er BookInfoList Klasinn");
 
 	}
 
+	@Override
 	public void addBooking(BookingInfo b) {
-		Database.connectToDatabase();
 		User user = b.getUser();
 		IndivDayTrip trip = b.getTrip();
 		DayTrip parent = trip.getParent();
 		int seats = b.getSeats();
-		
-		if(!Database.matchDB(user.getId(), "USERS",  "ID")){
-			UserList.addUser(user.getId(), user.getHotel(), user.getTown(), user.getName(), user.getEmail());
-		}
 		
 		//TODO Spurning um User ID sem int eða String
 		int uID = Integer.parseInt(user.getId());
@@ -35,11 +31,11 @@ public class BookInfoList{
 						+ "VALUES('" + uID + "', '" + tID + "', '" + pNAM + "', '" + seats + "');";
 		
     	Database.insert(inject);
-    	Database.closeDatabase();
 	}
-	
+	//BOOKING(USERID INT, TRIPID INT, PARENT CHAR(50), SEATS INT)
+	@Override
 	public BookingInfo[] pullBooking() {
-		Database.connectToDatabase();
+		// TODO Auto-generated method stub
         ResultSet rs = Database.getTable("booking");
         List<BookingInfo> result = new ArrayList<BookingInfo>();
         try {
@@ -92,24 +88,22 @@ public class BookInfoList{
                 k++;
             }
             BookingInfo[] truOP = new BookingInfo[k];
-            Database.closeDatabase();
             return result.toArray(truOP);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-            Database.closeDatabase();
             return null;
         }
 	}
 
+	@Override
 	public void removeBooking(BookingInfo b) {
-		Database.connectToDatabase();
+		// TODO Auto-generated method stub
 		String uId = b.getUser().getId();
 		int tId = b.getTrip().getId();
 		
 		String cond = "USERUD = "+uId+" AND TRIPID = "+tId+";";
-		ResultSet rs = Database.deleteEntry("indivDaytrips", cond);
-		Database.closeDatabase();
+		ResultSet rs = Database.deleteEntry("indivDaytrips", cond);		
 	}
 
 }

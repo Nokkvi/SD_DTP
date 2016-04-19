@@ -1,7 +1,7 @@
 package classes;
 import interfaces.*;
 
-public class DayTrip{
+public class DayTrip implements I_DayTrip {
 	private String name;
 	private String category;
 	private String[] pickupLocation;
@@ -94,7 +94,7 @@ public class DayTrip{
 		// TODO Auto-generated method stub
 		System.out.println("�etta er DayTrip Klasinn");
 	}
-	
+	@Override
 	public IndivDayTrip selectIndiv(int i) {
 		// TODO Auto-generated method stub
 		return null;

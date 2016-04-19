@@ -1,7 +1,7 @@
 package classes;
 import interfaces.*;
 
-public class BookingInfo{
+public class BookingInfo implements I_BookingInfo{
 	private User user;
 	private IndivDayTrip trip;
 	private int seats;

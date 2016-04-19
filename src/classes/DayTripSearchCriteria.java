@@ -6,21 +6,10 @@ public class DayTripSearchCriteria {
 	private String location;
 	private Date startTime;
 	private Date endTime;
-	private int[] priceRange = new int[2];
+	private int[] priceRange;
 	private int numParticipants;
 	private String[] category;
 
-	public DayTripSearchCriteria(){
-		name = null;
-		location = null;
-		startTime = null;
-		endTime = null;
-		priceRange[0] = -1;
-		priceRange[1] = -1;
-		numParticipants = -1;
-		category = null;
-	}
-	
 	public String getName(){
 		return this.name;
 	}
@@ -49,7 +38,4 @@ public class DayTripSearchCriteria {
 		return this.category;
 	}
 	
-	public void setName(String n){
-		this.name = n;
-	}
 }
