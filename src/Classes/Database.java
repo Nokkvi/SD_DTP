@@ -6,7 +6,7 @@ import interfaces.I_Database;
 import java.sql.*;
 import java.util.*;
 
-public class Database implements I_Database {
+public class Database{
     static Connection c;
     static Statement stmt;
 
@@ -115,7 +115,7 @@ public class Database implements I_Database {
             c = DriverManager.getConnection("jdbc:sqlite:Database.db");
             c.setAutoCommit(false);
             stmt = c.createStatement();
-            System.out.println("Opened database successfully");		
+            //System.out.println("Opened database successfully");		
         } catch ( Exception e ) {      
             e.printStackTrace();
         }
@@ -131,6 +131,6 @@ public class Database implements I_Database {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.out.println("ERROR");
         }
-        System.out.println("Database closed"); 
+        //System.out.println("Database closed"); 
     }
 }

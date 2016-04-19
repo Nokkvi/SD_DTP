@@ -1,5 +1,6 @@
 package classes;
-import interfaces.UserClass;
+import metaSearchEngine.program.*;
+
 
 public class User extends UserClass{
 	private String hotel;
