@@ -37,7 +37,7 @@ public class DaytripSearcher{
 		Date tETime = crit.getEndTime();
 		int[] tPRange = crit.getPriceRange();
 		int tSeats = crit.getNumParticipants();
-		String tCat = crit.getCategory();
+		String[] tCat = crit.getCategory();
 		
 		if(tName != null)	output = DaytripSearcher.searchByName(tName, output);
 		if(tLoc != null)	output = searchByLoc(tLoc, output);
@@ -134,15 +134,18 @@ public class DaytripSearcher{
 		return output.toArray(truOp);	
 	}
 	
-	private static IndivDayTrip[] searchByCategory(String cat, IndivDayTrip[] input){
+	private static IndivDayTrip[] searchByCategory(String[] cat, IndivDayTrip[] input){
 		int k = 0;
 		Vector<IndivDayTrip> output = new Vector<IndivDayTrip>();
 		for(int i = 0; i < input.length; i++){
 			DayTrip parent = input[i].getParent();
 			String c = parent.getCategory();
-			if(c.toLowerCase().contains(cat.toLowerCase())){
-				output.add(input[i]);
-				k++;
+			for(int j = 0; j < cat.length; j++){
+				if(c.toLowerCase().contains(cat[j].toLowerCase())){
+					output.add(input[i]);
+					k++;
+					break;
+				}
 			}
 		}
 		IndivDayTrip[] truOp = new IndivDayTrip[k];
@@ -294,7 +297,7 @@ public class DaytripSearcher{
 	//Pre:	c is a String.
 	//Post:	I contains information extracted from all IndivDayTrips
 	//		whose category name contains at least one  of the strings in c.
-	public static ArrayList<DaytripAbstract> searchByCategory(String cat){
+	public static ArrayList<DaytripAbstract> searchByCategory(String[] cat){
 		
 		IndivDayTrip[] a = IndivDayTripList.pullIndivDayTrip();
 		a = searchByCategory(cat, a);

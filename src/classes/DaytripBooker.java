@@ -8,15 +8,11 @@ public class DaytripBooker {
 	//Pre:	u is a User object, t is a DaytripAbstract object, s is a positive integer
 	//Post:	Adds a new booking into the booking database.
 	public static void bookTrip(User user, DaytripAbstract tripInfo, int seats){
+		BookInfoList b = new BookInfoList();
 		int ID = tripInfo.getIndivID();
 		IndivDayTrip trip = DaytripSearcher.searchByID(ID);
-		if(trip.getNumSeatsAvail() >= seats){
-			BookingInfo booking = new BookingInfo(user, trip, seats);
-			BookInfoList.addBooking(booking);
-		}else{
-			System.out.println("Not enough seats.");
-		}
-		
+		BookingInfo booking = new BookingInfo(user, trip, seats);
+		b.addBooking(booking);
 	}
 	
 	//Use:	BookingOutput[] b = getBookingInfo(u);
