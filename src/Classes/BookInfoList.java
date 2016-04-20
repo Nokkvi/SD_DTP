@@ -26,7 +26,7 @@ public class BookInfoList{
 			UserList.addUser(user.getId(), user.getHotel(), user.getTown(), user.getName(), user.getEmail());
 		}
 		
-		//TODO Spurning um User ID sem int eða String
+		//TODO Spurning um User ID sem int eï¿½a String
 		int uID = Integer.parseInt(user.getId());
 		int tID = trip.getId();
 		String pNAM = parent.getName();
