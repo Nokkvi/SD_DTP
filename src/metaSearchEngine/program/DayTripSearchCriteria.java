@@ -1,4 +1,4 @@
-package classes;
+package metaSearchEngine.program;
 import java.util.Date;
 
 public class DayTripSearchCriteria {
@@ -8,7 +8,7 @@ public class DayTripSearchCriteria {
 	private Date endTime;
 	private int[] priceRange = new int[2];
 	private int numParticipants;
-	private String[] category;
+	private String category;
 
 	public DayTripSearchCriteria(){
 		name = null;
@@ -45,11 +45,36 @@ public class DayTripSearchCriteria {
 		return this.numParticipants;
 	}
 	
-	public String[] getCategory(){
+	public String getCategory(){
 		return this.category;
 	}
 	
 	public void setName(String n){
 		this.name = n;
+	}
+	
+	public void setPrice(int i, int j){
+		this.priceRange[0] = i;
+		this.priceRange[1] = j;
+	}
+	
+	public void setNumParticipants(int num){
+		this.numParticipants = num;
+	}
+	
+	public void setCategory(String cat){
+		this.category = cat;
+	}
+	
+	public void setLocation(String loc){
+		this.location = loc;
+	}
+	
+	public void setStartTime(Date start){
+		this.startTime = start;
+	}
+	
+	public void setEndTime(Date end){
+		this.endTime = end;
 	}
 }
